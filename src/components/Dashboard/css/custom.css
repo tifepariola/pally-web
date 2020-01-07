@@ -1,0 +1,10 @@
+#topnav {
+    background: #6600af;
+}
+.navbar-custom .app-search .form-control {
+    background: transparent;
+    border: 1px solid #fff;
+}
+.widget-flat i.widget-icon {
+    font-style: normal;
+}

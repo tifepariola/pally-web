@@ -1,0 +1,17 @@
+#topnav {
+    background-color: #6600af;
+}
+.navbar-custom .app-search .form-control {
+    background: transparent;
+    border: 1px solid #fff;
+}
+.widget-flat i.widget-icon {
+    font-style: normal;
+}
+#topnav .has-submenu a.active{color:#fff}#topnav .has-submenu a.active i{color:#fff}
+@media (max-width: 991px) {
+    #topnav .has-submenu a.active {
+        color: #5d56e9;
+    }
+    #topnav .has-submenu a.active i{color:#5d56e9}
+}

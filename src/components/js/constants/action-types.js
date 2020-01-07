@@ -1,0 +1,9 @@
+export const LOGIN_USER = "LOGIN_USER";
+export const GET_ERRORS = "GET_ERRORS";
+export const GET_PLAN = "GET_PLAN";
+export const PLAN_LOADING = "PLAN_LOADING";
+export const GET_USER = "GET_USER";
+export const USER_LOADING = "USER_LOADING";
+export const CREATE_PLAN = "CREATE_PLAN";
+export const SAVE_WITH_AUTH = "SAVE_WITH_AUTH";
+export const FIXED_PLAN = "FIXED_PLAN";

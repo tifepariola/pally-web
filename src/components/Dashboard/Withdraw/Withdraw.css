@@ -1,0 +1,10 @@
+.bg-primary {
+    border: 0;
+}
+.bg-primary h5, .bg-primary h3 {
+    color: #ffffff !important;
+}
+.m {
+  align-content: center;
+  justify-content: center;
+}

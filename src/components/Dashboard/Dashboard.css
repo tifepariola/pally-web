@@ -1,0 +1,6 @@
+@import "./css/bootstrap.min.css";
+@import "./css/icons.min.css";
+@import "./css/app.min.css";
+body {
+    background-color: #f5f6f8 !important;
+}
