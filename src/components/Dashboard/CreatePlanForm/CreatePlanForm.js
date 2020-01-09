@@ -75,7 +75,6 @@ class CreatePlanForm extends Component {
                                             backButtonText={"Back"}
                                             backButtonCls={"btn btn-primary float-left"}
                                             nextButtonCls={"btn btn-primary float-right"}
-                                            hocValidationAppliedTo={[3]}
                                             startAtStep={
                                                 window.sessionStorage.getItem("step")
                                                     ? parseFloat(window.sessionStorage.getItem("step"))
