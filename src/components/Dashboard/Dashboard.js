@@ -1,11 +1,12 @@
 import React from 'react';
 import './Dashboard.css';
-import { Doughnut } from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
 import history from './../../history';
 import Header from './Header/Header';
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import PlanActions from "../js/actions/actions";
 import UserActions from '../js/actions/userActions';
+
 const data = {
     labels: [
         'Fixed Deposit',
@@ -42,6 +43,7 @@ export default class Dashboard extends React.Component {
             totalBalance: JSON.parse(localStorage.getItem('user')).jara.current_balance
         }
     }
+
     componentWillMount() {
         let plan_list = [];
         PlanActions.getPlans().subscribe(resp => {
@@ -67,6 +69,7 @@ export default class Dashboard extends React.Component {
             })
         })
     }
+
     formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
         try {
             decimalCount = Math.abs(decimalCount);
@@ -82,15 +85,17 @@ export default class Dashboard extends React.Component {
             console.log(e)
         }
     }
+
     getTx() {
 
     }
+
     render() {
         return (
 
 
             <div>
-                <Header />
+                <Header/>
                 <div className="wrapper">
                     <div className="container-fluid">
                         <div className="row">
@@ -146,7 +151,8 @@ export default class Dashboard extends React.Component {
                                         <div className="p-3 pb-0">
                                             <h3>Save Now</h3>
                                             <h6>Add fund instantly to a plan</h6>
-                                            <Link to="/dashboard/save" className="btn btn-link"><i className="fa fa-plus"></i> Add Money</Link>
+                                            <Link to="/dashboard/save" className="btn btn-link"><i
+                                                className="fa fa-plus"></i> Add Money</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +164,8 @@ export default class Dashboard extends React.Component {
                                         <div className="p-3 pb-0">
                                             <h3>Create A Plan</h3>
                                             <h6>The first step to financial head way</h6>
-                                            <Link to="/dashboard/plans" className="btn btn-link text-white"><i className="fa fa-plus"></i> Create Plan</Link>
+                                            <Link to="/dashboard/plans" className="btn btn-link text-white"><i
+                                                className="fa fa-plus"></i> Create Plan</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +176,9 @@ export default class Dashboard extends React.Component {
                                         <div className="p-3 pb-0">
                                             <h3>Earn Rewards</h3>
                                             <h6>Invite a friend and get rewarded</h6>
-                                            <button className="btn btn-link"><i className="fa fa-arrow-right"></i> Get Link</button>
+                                            <button className="btn btn-link"><i className="fa fa-arrow-right"></i> Get
+                                                Link
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -179,40 +188,41 @@ export default class Dashboard extends React.Component {
                         <div className="row">
 
                             {/* <div className="col-xl-4">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h4 className="header-title">Savings Chart</h4>
-                                        <Doughnut data={data} height={350} className="mt-4" />
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <h4 className="header-title">Savings Chart</h4>
+                                            <Doughnut data={data} height={350} className="mt-4" />
 
 
+                                        </div>
                                     </div>
-                                </div>
-                            </div> */}
+                                </div> */}
                             <div className="col-xl-9">
-                                <div className="card" style={{ height: "calc(100% - 30px)" }}>
+                                <div className="card" style={{height: "calc(100% - 30px)"}}>
                                     <div className="card-body">
                                         <h4 className="header-title">Transactions</h4>
 
                                         <div className="table-responsive mt-3">
                                             <table className="table table-hover table-centered mb-0">
                                                 <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Description</th>
-                                                        <th>Amount</th>
-                                                    </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Description</th>
+                                                    <th>Amount</th>
+                                                </tr>
                                                 </thead>
 
 
                                                 <tbody>
-                                                    {this.state.txs.map((tx, key) => <tr><td><b>{tx.data.created_at}</b></td>
-                                                        <td>
-                                                            <b>{tx.data.type}</b>
-                                                        </td>
-                                                        <td>
-                                                            {tx.data.amount}
-                                                        </td>
-                                                    </tr>)}
+                                                {this.state.txs.map((tx, key) => <tr>
+                                                    <td><b>{tx.data.created_at}</b></td>
+                                                    <td>
+                                                        <b>{tx.data.type}</b>
+                                                    </td>
+                                                    <td>
+                                                        {tx.data.amount}
+                                                    </td>
+                                                </tr>)}
                                                 </tbody>
                                             </table>
 
@@ -220,7 +230,7 @@ export default class Dashboard extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                        
+
                             <div className="col-xl-3">
 
                             </div>
@@ -232,7 +242,7 @@ export default class Dashboard extends React.Component {
                         <div className="row">
                             <div className="col-md-6">
                                 OnePally &copy; 2019
-                                </div>
+                            </div>
                             <div className="col-md-6">
                                 <div className="text-md-right footer-links d-none d-sm-block">
                                     <a href="/">About Us</a>
