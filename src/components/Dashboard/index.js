@@ -16,6 +16,7 @@ import CreatePlan from "./CreatePlan/CreatePlan";
 import PlanForm from "./PlanForm/PlanForm";
 import ViewPlan from "./ViewPlan/ViewPlan";
 import CreatePlanForm from "./CreatePlanForm/CreatePlanForm";
+import LoginAlt from "./Auth/LoginAlt";
 
 function Index() {
   
@@ -24,6 +25,7 @@ function Index() {
       <Router>
         <Route exact path="/dashboard" component={Dashboard} />
         <Route path="/dashboard/login" component={Login} />
+        <Route path="/dashboard/login2" component={LoginAlt} />
         <Route path="/dashboard/register" component={Register} />
         <Route path="/dashboard/profile" component={Profile} />
         <Route path="/dashboard/forgot" component={ForgotPass} />
