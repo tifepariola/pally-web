@@ -17,6 +17,8 @@ import PlanForm from "./PlanForm/PlanForm";
 import ViewPlan from "./ViewPlan/ViewPlan";
 import CreatePlanForm from "./CreatePlanForm/CreatePlanForm";
 import LoginAlt from "./Auth/LoginAlt";
+import RegisterAlt from "./Auth/RegisterAlt";
+import ForgotPassAlt from "./Auth/ForgotPassAlt";
 
 function Index() {
   
@@ -24,11 +26,13 @@ function Index() {
     <Provider store={store}>
       <Router>
         <Route exact path="/dashboard" component={Dashboard} />
-        <Route path="/dashboard/login" component={Login} />
-        <Route path="/dashboard/login2" component={LoginAlt} />
-        <Route path="/dashboard/register" component={Register} />
+        <Route path="/dashboard/login2" component={Login} />
+        <Route path="/dashboard/login" component={LoginAlt} />
+        <Route path="/dashboard/register2" component={Register} />
+        <Route path="/dashboard/register" component={RegisterAlt} />
         <Route path="/dashboard/profile" component={Profile} />
-        <Route path="/dashboard/forgot" component={ForgotPass} />
+        <Route path="/dashboard/forgot2" component={ForgotPass} />
+        <Route path="/dashboard/forgot" component={ForgotPassAlt} />
         <Route path="/dashboard/save" component={SaveNow} />
         <Route path="/dashboard/plans" component={MyPlans} />
         <Route path="/dashboard/create" component={CreatePlan} />

@@ -75,10 +75,10 @@ export default class LoginAlt extends React.Component {
                                     className={"btn btn-white btn-lg btn-block rounded-0 text-primary float-right"}>Sign
                                 In
                             </button>
-                            <button type="submit"
+                            <Link to={"/dashboard/register"}
                                     className={"btn btn-primary btn-lg btn-block mt-0 rounded-0 text-white float-right"}>Sign
                                 Up
-                            </button>
+                            </Link>
                         </div>
                       <div className={"mb-2"} style={{position: 'absolute', bottom: 0}}>
                         <div className={"container"}>
