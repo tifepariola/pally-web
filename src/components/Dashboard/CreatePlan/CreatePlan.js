@@ -73,7 +73,7 @@ class CreatePlan extends Component {
 
                         <div className="row mt-2">
                             <div className="col-xl-4 offset-xl-4">
-                                <Link to="/dashboard/edit">
+                                <Link to="/dashboard/create-regular-savings">
                                     <div className="card widget-flat bg-primary text-white">
                                         <div className="card-body p-0">
                                             <div className="p-3 pb-0">

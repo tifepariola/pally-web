@@ -19,6 +19,7 @@ import CreatePlanForm from "./CreatePlanForm/CreatePlanForm";
 import LoginAlt from "./Auth/LoginAlt";
 import RegisterAlt from "./Auth/RegisterAlt";
 import ForgotPassAlt from "./Auth/ForgotPassAlt";
+import CreateRegular from "./CreateRegular/CreateRegular";
 
 function Index() {
   
@@ -37,6 +38,7 @@ function Index() {
         <Route path="/dashboard/plans" component={MyPlans} />
         <Route path="/dashboard/create" component={CreatePlan} />
         <Route path="/dashboard/create-plan" component={CreatePlanForm} />
+        <Route path="/dashboard/create-regular-savings" component={CreateRegular} />
         <Route path="/dashboard/edit" component={PlanForm} />
         <Route path="/dashboard/view" component={ViewPlan} />
         <Route path="/dashboard/plan/:plan_type/:id" component={PlanDetail} />

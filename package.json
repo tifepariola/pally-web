@@ -7,7 +7,10 @@
     "axios-observable": "^1.1.2",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
+    "joi": "^14.3.1",
+    "joi-validation-strategy": "^0.3.3",
     "jquery": "^3.4.1",
+    "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-bootstrap-wizard": "0.0.7",
@@ -24,6 +27,7 @@
     "react-slick": "^0.24.0",
     "react-slide-toggle": "^0.2.5",
     "react-stepzilla": "^6.0.2",
+    "react-validation-mixin": "^5.4.0",
     "reactstrap": "^8.2.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"

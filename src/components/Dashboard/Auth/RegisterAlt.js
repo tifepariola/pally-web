@@ -81,10 +81,7 @@ export default class RegisterAlt extends React.Component {
                                             <div className="card-body p-4">
 
                                                 <div className="text-center w-75 m-auto">
-                                                    <a href="index.html">
                                                         <h2 className={"text-primary"}>Create an account</h2>
-                                                        {/* <span><img src="assets/images/logo-dark.png" alt="" height="22" /></span> */}
-                                                    </a>
                                                     <p className="text-muted mb-4 mt-3">Don't have an account? Create free account</p>
                                                 </div>
 

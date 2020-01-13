@@ -67,10 +67,7 @@ export default class ForgotPassAlt extends React.Component {
                                             <div className="card-body p-4">
 
                                                 <div className="text-center w-75 m-auto">
-                                                    <a href="index.html">
-                                                        <h2>Reset Password</h2>
-                                                        {/* <span><img src="assets/images/logo-dark.png" alt="" height="22" /></span> */}
-                                                    </a>
+                                                        <h2 className={"text-primary"}>Reset Password</h2>
                                                     <p className="text-muted mb-4 mt-3">You are amazing!</p>
                                                 </div>
 
