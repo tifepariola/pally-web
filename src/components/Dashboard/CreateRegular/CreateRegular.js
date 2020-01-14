@@ -31,12 +31,12 @@ class CreateRegular extends Component {
         }
         this.sampleStore = {
             amount: 100,
-            custom_name: 'Hello',
+            custom_name: '',
             automatic_saving: "true",
             payment_mode: "daily",
             type: "private",
             saving_amount: 100,
-            maturity_date: '2020-07-14'
+            maturity_date: ''
         };
         this.handleNext = this.handleNext.bind(this);
 
@@ -89,7 +89,7 @@ class CreateRegular extends Component {
                 <Header />
                 <div className="wrapper">
                     <div className="container-fluid">
-                        <div className="row py-3">
+                        <div className="row pt-3">
                             <div className="col-md-2">
                             <Link to="/">
                                 <i className="fa fa-arrow-left"></i> Back
@@ -104,8 +104,7 @@ class CreateRegular extends Component {
                         </div>
 
                         <div className="row mt-2">
-                            <div className="col-xl-8 offset-xl-2">
-                                <button onClick={this.handleNext}>Check</button>
+                            <div className="col-xl-8 offset-xl-2 mb-4">
                                     <div className="step-progress">
                                         <StepZilla
                                             steps={steps}
@@ -115,7 +114,7 @@ class CreateRegular extends Component {
                                             nextTextOnFinalActionStep={"Finish"}
                                             backButtonText={"Back"}
                                             hocValidationAppliedTo={[0,1,2,3,4]}
-                                            startAtStep={6}
+                                            // startAtStep={5}
                                             backButtonCls={"btn btn-primary float-left"}
                                             nextButtonCls={"btn btn-primary float-right"}
 
