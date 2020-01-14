@@ -42,7 +42,6 @@ class Step3 extends Component {
                 if (this.props.getStore().saving_amount != this.getValidatorData().saving_amount) { // only update store of something changed
                     this.props.updateStore({
                         ...this.getValidatorData(),
-                        savedToCloud: true // use this to notify step4 that some changes took place and prompt the user to save again
                     });  // Update store here (this is just an example, in reality you will do it via redux or flux)
                 }
 

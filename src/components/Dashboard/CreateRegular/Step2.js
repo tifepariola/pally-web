@@ -44,7 +44,6 @@ class Step2 extends Component {
                 this.props.updateStore({
                     automatic_saving: this.state.automatic_saving,
                     payment_mode: this.state.payment_mode,
-                    savedToCloud: true // use this to notify step4 that some changes took place and prompt the user to save again
                 });  // Update store here (this is just an example, in reality you will do it via redux or flux)
 
                 resolve(); // form is valid, fire action

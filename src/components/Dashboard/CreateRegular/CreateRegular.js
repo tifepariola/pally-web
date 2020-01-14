@@ -19,6 +19,7 @@ import Step5 from './Step5';
 import Step6 from './Step6';
 import Step7 from './Step7';
 import Step8 from './Step8';
+import PlanActions from "../../js/actions/actions";
 
 class CreateRegular extends Component {
 
@@ -29,19 +30,35 @@ class CreateRegular extends Component {
             auth: localStorage.getItem("auth"),
         }
         this.sampleStore = {
-            email: '',
-            custom_name: '',
+            amount: 100,
+            custom_name: 'Hello',
             automatic_saving: "true",
             payment_mode: "daily",
+            type: "private",
             saving_amount: 100,
-            gender: '',
-            savedToCloud: false
+            maturity_date: '2020-07-14'
         };
         this.handleNext = this.handleNext.bind(this);
 
     }
     handleNext() {
         console.log(this.sampleStore)
+    }
+    handleFinished() {
+        let plansData = {
+            // plan: this.state.plan,
+            custom_name: this.state.custom_name,
+            amount: this.state.amount,
+            type: this.state.plan,
+            payment_mode: this.state.payment_mode,
+            maturity_date: this.state.maturityDate
+        };
+        PlanActions.createPlan(plansData, "savers").subscribe(resp => {
+            let plan = resp.data.data
+            console.log(plan)
+
+            // window.location = "/dashboard/plans"
+        })
     }
     getStore() {
         return this.sampleStore;
@@ -62,8 +79,8 @@ class CreateRegular extends Component {
                 {name: '2', component: <Step2 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
                 {name: '3', component: <Step3 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
                 {name: '4', component: <Step4 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-                // {name: '5', component: <Step5 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-                {name: '6', component: <Step6 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
+                {name: '5', component: <Step5 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
+                // {name: '6', component: <Step6 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
                 {name: '7', component: <Step7 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
                 {name: '8', component: <Step8 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />}
             ]
@@ -97,8 +114,8 @@ class CreateRegular extends Component {
                                             nextButtonText={"Continue"}
                                             nextTextOnFinalActionStep={"Finish"}
                                             backButtonText={"Back"}
-                                            hocValidationAppliedTo={[0,1,2]}
-                                            startAtStep={3}
+                                            hocValidationAppliedTo={[0,1,2,3,4]}
+                                            startAtStep={6}
                                             backButtonCls={"btn btn-primary float-left"}
                                             nextButtonCls={"btn btn-primary float-right"}
 

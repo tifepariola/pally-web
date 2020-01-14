@@ -22,28 +22,24 @@ class PlanTable extends Component {
     const { id, custom_name, fixed_amount, maturity, balance, plan_type } = this.props;
     // console.log(plan);
     return (
-      <div className="col-xl-3 col-lg-6">
-        <Link to={"/dashboard/plan/" + plan_type + "s/" + id}>
-          <div className="card click-card widget-flat">
-            <div className="card-body p-0">
-              <div className="p-3 pb-0">
-                <div className="float-right">
-                  <i className="text-primary widget-icon fa fa-piggy-bank" />
+        <div className="col-md-4">
+            <Link to={"/dashboard/plan/" + plan_type + "s/" + id}>
+            <div className="card">
+              <div className="card-header border-0">
+                <h4 className="float-left"><span className="badge badge-primary">{plan_type}</span></h4>
+                <h4 className="float-right"><i className="fa fa-lock"></i></h4>
+              </div>
+              <div className="card-body">
+                <div>
+                  <h4>{custom_name}</h4>
+                  <h1>&#8358;{this.formatMoney(balance ? balance : 0, 2, '.', ',')}</h1>
+                  <small>Maturity Date: {maturity.split(" ")[0].split("T")[0]}</small>
+                  {/*&#8358;{this.formatMoney(fixed_amount ? fixed_amount : 0, 2, '.', ',')}*/}
                 </div>
-                <h6 className="text-muted font-weight-normal mt-0">{plan_type}</h6>
-                <h4 className="text-muted font-weight-normal mt-0">
-                  {custom_name}
-                </h4>
-
-                <h3 className="mt-2">&#8358;{this.formatMoney(balance ? balance : 0, 2, '.', ',')}</h3>
-                <h6 className="text-muted font-weight-normal mb-0">
-                  Maturity: <span className="text-primary">{maturity.split(" ")[0].split("T")[0]}</span> <br /> Target Amount: &#8358;{this.formatMoney(fixed_amount ? fixed_amount : 0, 2, '.', ',')}
-                </h6>
               </div>
             </div>
-          </div>
-        </Link>
-      </div>
+          </Link>
+        </div>
     );
   }
 }

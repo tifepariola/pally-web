@@ -164,7 +164,7 @@ export default class Dashboard extends React.Component {
                                         <div className="p-3 pb-0">
                                             <h3>Create A Plan</h3>
                                             <h6>The first step to financial head way</h6>
-                                            <Link to="/dashboard/plans" className="btn btn-link text-white"><i
+                                            <Link to="/dashboard/create" className="btn btn-link text-white"><i
                                                 className="fa fa-plus"></i> Create Plan</Link>
                                         </div>
                                     </div>

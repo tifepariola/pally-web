@@ -371,23 +371,6 @@ class MyPlans extends Component {
             </div>
 
             <div className="row mt-2">
-              <div className="col-md-4">
-                <Link to="/dashboard/view">
-                  <div className="card">
-                    <div className="card-header border-0">
-                      <h4 className="float-left"><span class="badge badge-primary">New</span></h4>
-                      <h4 className="float-right"><i className="fa fa-lock"></i></h4>
-                    </div>
-                    <div className="card-body">
-                      <div>
-                        <h4>School Fees</h4>
-                        <h1>N500,000</h1>
-                        <small>Maturity Date: 20 Jan, 2020</small>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
               {
                 this.state.loading ? <Spinner /> :
                   this.state.plans.length === 0 ? 'You have not created any plan, click create plan to get started!' : this.state.plans.map((plan, key) => plan.hidden ? null : <PlanTable

@@ -1,6 +1,7 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
 
 export default class Step8 extends Component {
     constructor(props) {
@@ -9,9 +10,11 @@ export default class Step8 extends Component {
         this.state = {};
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+    }
 
-    componentWillUnmount() {}
+    componentWillUnmount() {
+    }
 
     // not required as this component has no forms or user entry
     // isValidated() {}
@@ -20,7 +23,11 @@ export default class Step8 extends Component {
         return (
             <div className="card">
                 <div className="card-body">
-                    <i className="fa fa-check"></i>
+                    <div className={"text-center"}>
+                        <i className="fa fa-check fa-3x mb-2"></i>
+                        <p>You have created a regular savings plan successfully.</p>
+                        <Link to={"/dashboard/plans"} className={"btn btn-primary "}>View Plans</Link>
+                    </div>
                 </div>
             </div>
         )
