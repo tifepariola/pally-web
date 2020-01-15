@@ -20,6 +20,9 @@ import LoginAlt from "./Auth/LoginAlt";
 import RegisterAlt from "./Auth/RegisterAlt";
 import ForgotPassAlt from "./Auth/ForgotPassAlt";
 import CreateRegular from "./CreateRegular/CreateRegular";
+import EditFixed from "./EditFixed/EditFixed";
+import ViewLifePlan from "./ViewLifePlan/ViewLifePlan";
+import ViewFixedPlan from "./ViewFixedPlan/ViewFixedPlan";
 
 function Index() {
   
@@ -39,9 +42,11 @@ function Index() {
         <Route path="/dashboard/create" component={CreatePlan} />
         <Route path="/dashboard/create-plan" component={CreatePlanForm} />
         <Route path="/dashboard/create-regular-savings" component={CreateRegular} />
-        <Route path="/dashboard/edit" component={PlanForm} />
+        <Route path="/dashboard/edit/fixeds/:id" component={EditFixed} />
+        <Route path="/dashboard/edit/lives/:id" component={EditFixed} />
         <Route path="/dashboard/view" component={ViewPlan} />
-        <Route path="/dashboard/plan/:plan_type/:id" component={PlanDetail} />
+        <Route path="/dashboard/plan/lifes/:id" component={ViewLifePlan} />
+        <Route path="/dashboard/plan/fixeds/:id" component={ViewFixedPlan} />
         <Route path="/dashboard/withdraw" component={Withdraw} />
       </Router>
     </Provider>

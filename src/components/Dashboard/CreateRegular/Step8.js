@@ -25,8 +25,8 @@ export default class Step8 extends Component {
                 <div className="card-body">
                     <div className={"text-center"}>
                         <i className="fa fa-check fa-3x mb-2"></i>
-                        <p>You have created a regular savings plan successfully.</p>
-                        <Link to={"/dashboard/plans"} className={"btn btn-primary "}>View Plans</Link>
+                        <p>You have created a regular savings plan successfully. To start your savings, take the big step!</p>
+                        <Link to={"/dashboard/save"} className={"btn btn-primary "}>Save Now</Link>
                     </div>
                 </div>
             </div>

@@ -65,7 +65,7 @@ export default class Dashboard extends React.Component {
                 txs: resp.data.data.transactions,
                 currentReturns: resp.data.data.current_returns,
                 savingsBalance: resp.data.data.balance,
-                totalBalance: this.state.user.jara.current_balance + resp.data.data.balance
+                totalBalance: resp.data.data.jara_balance + resp.data.data.balance
             })
         })
     }

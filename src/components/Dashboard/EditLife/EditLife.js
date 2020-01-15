@@ -3,17 +3,18 @@ import {Component} from "react";
 import Header from '../Header/Header';
 import Footer from "../Footer/Footer";
 import {Link} from 'react-router-dom'
-import './PlanForm.css';
+import './EditLife.css';
 import PlanActions from "../../js/actions/actions";
+import Datetime from "react-datetime";
 
-export default class PlanForm extends Component {
+export default class EditLife extends Component {
     constructor(props) {
         super(props);
         const {id, plan_type} = this.props.match.params
         this.state = {
             plan: {},
             planId: id,
-            planType: plan_type,
+            planType: 'lives',
         }
     }
 
@@ -30,6 +31,11 @@ export default class PlanForm extends Component {
     }
 
     render() {
+
+        var maturityDay = this.state.plan === 'fixeds' ? Datetime.moment().add(6, 'month') : Datetime.moment().add(3, 'month');
+        var maturityValid = function (current) {
+            return current.isAfter(maturityDay);
+        };
         return (
             <div>
 
@@ -38,7 +44,7 @@ export default class PlanForm extends Component {
                     <div className="container-fluid">
                         <div className="row py-3">
                             <div className="col-md-2">
-                                <Link to={"/dashboard/plan/" + this.state.planType + "/" + this.state.planId}>
+                                <Link to={"/dashboard/plan/fixeds/" + this.state.planId}>
                                     <i className="fa fa-arrow-left"></i> Back
                                 </Link>
                             </div>
@@ -74,29 +80,16 @@ export default class PlanForm extends Component {
                                         </div>
                                         <div className="form-group row my-2">
                                             <label className="col-sm-5 col-form-label py-0">
-                                                <h4 className="m-0">Saving Frequency</h4>
-                                                <small>How much and how often do you want to save?</small>
-                                            </label>
-                                            <div className="col-sm-7">
-                                                <input type="text" className="form-control" defaultValue={this.state.plan.saving_amount}/>
-                                            </div>
-                                        </div>
-                                        <div className="form-group row my-2">
-                                            <label className="col-sm-5 col-form-label py-0">
-                                                <h4 className="m-0">Automation</h4>
-                                                <small>Like to save automatically?</small>
-                                            </label>
-                                            <div className="col-sm-7">
-                                                <input type="text" className="form-control"/>
-                                            </div>
-                                        </div>
-                                        <div className="form-group row my-2">
-                                            <label className="col-sm-5 col-form-label py-0">
                                                 <h4 className="m-0">Maturity Date</h4>
                                                 <small>When will you like your saving to end?</small>
                                             </label>
                                             <div className="col-sm-7">
-                                                <input type="text" className="form-control" defaultValue={this.state.plan.maturity_date}/>
+                                                {
+                                                    this.state.plan.maturity_date ?
+                                                        <Datetime input={true} timeFormat={false} defaultValue={this.state.plan.maturity_date.split(" ")[0]} viewDate={new Date(this.state.plan.maturity_date)} isValidDate={maturityValid} inputProps={{ placeholder: 'Click to select...' }} onChange={this.handleMaturityDate} />
+: null
+                                                }
+
                                             </div>
                                         </div>
                                         {/*<div className="form-group row my-2">*/}

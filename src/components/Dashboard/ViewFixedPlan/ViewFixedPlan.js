@@ -3,16 +3,15 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import {Link} from 'react-router-dom'
 import Modal from "react-responsive-modal";
-import SelectListGroup from "./SelectListGroup";
 import Datetime from 'react-datetime';
 import PlanActions from "../../js/actions/actions";
 import {getPlanDetail} from "../../js/actions/planActions";
 
-class PlanDetail extends Component {
+class ViewFixedPlan extends Component {
 
     constructor(props) {
         super(props);
-        const {id, plan_type} = this.props.match.params
+        const {id} = this.props.match.params
 
         this.state = {
             user: JSON.parse(localStorage.getItem('user')),
@@ -23,7 +22,7 @@ class PlanDetail extends Component {
             },
             payment_mode: "",
             planId: id,
-            planType: plan_type,
+            planType: 'fixeds',
             txs: []
         };
     }
@@ -124,72 +123,6 @@ class PlanDetail extends Component {
         var maturityValid = function (current) {
             return current.isAfter(maturityDay);
         };
-        if (show) {
-            showPlans = (
-                <div>
-                    <Modal open={open} onClose={this.onCloseModal} center>
-                        <h3>Edit Plan</h3>
-                        <form style={{width: 400}}>
-                            <div className="col-md-12">
-
-                                <div className="form-group">
-                                    <label>Plan Name</label>
-                                    <input
-                                        placeholder="Plan Name"
-                                        type="text"
-                                        onChange={this.handleChange}
-                                        name="custom_name"
-                                        className="form-control"
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Amount</label>
-                                    <input
-                                        placeholder="Amount"
-                                        type="number"
-                                        onChange={this.handleChange}
-                                        min="1"
-                                        step="1"
-                                        name="amount"
-                                        className="form-control"
-                                    />
-                                </div>
-                                <div className="form-group" style={{
-                                    display:
-                                        this.state.plan === "lives"
-                                            ? true
-                                            : 'none'
-                                }
-                                }>
-                                    <label>Payment Mode</label>
-                                    <SelectListGroup
-                                        placeholder="Select"
-                                        name="payment_mode"
-                                        value={this.state.payment_mode}
-                                        onChange={this.handleChange}
-                                        options={options3}
-
-                                    />
-                                </div>
-
-                                <button
-                                    type="button"
-                                    className="btn btn-primary"
-                                    onClick={this.handleSubmit}
-                                    disabled={loading1}
-                                >
-                                    {loading1 && (
-                                        <i className="log fa fa-refresh fa-spin"></i>
-                                    )}
-                                    Update
-                                </button>
-                            </div>
-                        </form>
-
-                    </Modal>
-                </div>
-            );
-        }
         return (<div>
             <Header/>
 
@@ -248,7 +181,7 @@ class PlanDetail extends Component {
                                     <div className="row">
                                         <div className="col-md-4 text-center">
                                             <div className="p-3 pb-0">
-                                                <h5 className="text-muted font-weight-normal mt-0">Balance</h5>
+                                                <h5 className="text-muted font-weight-normal mt-0">Fixed Amount</h5>
                                                 <h3 className="mt-2">     &#8358;{this.formatMoney(this.state.plan.current_balance ? this.state.plan.current_balance : 0, 2, '.', ',')}
                                                 </h3>
                                             </div>
@@ -365,4 +298,4 @@ class PlanDetail extends Component {
     }
 }
 
-export default PlanDetail;
+export default ViewFixedPlan;
