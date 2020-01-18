@@ -41,7 +41,7 @@ function Index() {
         <Route path="/dashboard/save" component={SaveNow} />
         <Route path="/dashboard/plans" component={MyPlans} />
         <Route path="/dashboard/create" component={CreatePlan} />
-        <Route path="/dashboard/create-plan" component={CreatePlanForm} />
+        <Route path="/dashboard/create-fixed" component={CreatePlanForm} />
         <Route path="/dashboard/create-regular-savings" component={CreateRegular} />
         <Route path="/dashboard/edit/fixeds/:id" component={EditFixed} />
         <Route path="/dashboard/edit/lives/:id" component={EditLife} />

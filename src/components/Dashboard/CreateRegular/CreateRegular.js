@@ -44,22 +44,6 @@ class CreateRegular extends Component {
     handleNext() {
         console.log(this.sampleStore)
     }
-    handleFinished() {
-        let plansData = {
-            // plan: this.state.plan,
-            custom_name: this.state.custom_name,
-            amount: this.state.amount,
-            type: this.state.plan,
-            payment_mode: this.state.payment_mode,
-            maturity_date: this.state.maturityDate
-        };
-        PlanActions.createPlan(plansData, "savers").subscribe(resp => {
-            let plan = resp.data.data
-            console.log(plan)
-
-            // window.location = "/dashboard/plans"
-        })
-    }
     getStore() {
         return this.sampleStore;
     }
@@ -91,7 +75,7 @@ class CreateRegular extends Component {
                     <div className="container-fluid">
                         <div className="row pt-3">
                             <div className="col-md-2">
-                            <Link to="/">
+                            <Link to="/dashboard/create">
                                 <i className="fa fa-arrow-left"></i> Back
                             </Link>
                             </div>

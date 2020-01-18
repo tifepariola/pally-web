@@ -1,38 +1,35 @@
 'use strict';
 
-import React from 'react';
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
 
-const Step5 = (props) => (
-    <div className="card">
-        <div className="card-body">
-            <fieldset>
-                <div className="form-group row">
-                    <label className="col-sm-5 col-form-label py-0">
-                        <h3 className="m-0">When would you like to start saving?</h3>
-                        <small>You can modify your saving frequency anytime after creating this plan.</small>
-                    </label>
-                    <div className="col-sm-7">
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                   value="option1" checked />
-                            <label className="form-check-label" htmlFor="exampleRadios1">
-                                I'll start today
-                            </label>
-                        </div>
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                                   value="option2" />
-                            <label className="form-check-label" htmlFor="exampleRadios2">
-                                Choose preferred date
-                            </label>
-                        </div>
-                        <input type="text" className="form-control mt-2" />
+export default class Step5 extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+    }
+
+    componentDidMount() {
+    }
+
+    componentWillUnmount() {
+    }
+
+    // not required as this component has no forms or user entry
+    // isValidated() {}
+
+    render() {
+        return (
+            <div className="card">
+                <div className="card-body">
+                    <div className={"text-center"}>
+                        <i className="fa fa-check fa-3x mb-2"></i>
+                        <p>You have created a fixed plan successfully. To complete your savings, take the big step!</p>
+                        <Link to={"/dashboard/save"} className={"btn btn-primary "}>Save Now</Link>
                     </div>
                 </div>
-
-            </fieldset>
-        </div>
-    </div>
-)
-
-export default Step5;
+            </div>
+        )
+    }
+}

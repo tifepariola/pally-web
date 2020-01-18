@@ -1,6 +1,7 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import PlanActions from "../../js/actions/actions";
 
 export default class Step4 extends Component {
     constructor(props) {
@@ -9,28 +10,62 @@ export default class Step4 extends Component {
         this.state = {};
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+    }
 
-    componentWillUnmount() {}
+    componentWillUnmount() {
+    }
 
     // not required as this component has no forms or user entry
-    // isValidated() {}
+    isValidated() {
+
+        return new Promise((resolve, reject) => {
+            let plansData = {
+                // plan: this.state.plan,
+                custom_name: this.props.getStore().custom_name,
+                amount: this.props.getStore().amount,
+                maturity_date: this.props.getStore().maturity_date
+            };
+            PlanActions.createPlan(plansData, "fixeds").subscribe(resp => {
+                let plan = resp.data.data
+                console.log(plan)
+                resolve()
+                // window.location = "/dashboard/plans"
+            })
+        })
+    }
 
     render() {
         return (
             <div className="card">
                 <div className="card-body">
-                    <fieldset>
-                        <div className="form-group row">
-                            <label className="col-sm-5 col-form-label py-0">
-                                <h3 className="m-0">How much would you like to save daily?</h3>
-                                <small>This is the amount you intend to save periodically into your plan. Minimum of ₦100 is required.</small>
-                            </label>
-                            <div className="col-sm-7">
-                                <input type="text" className="form-control" />
-                            </div>
-                        </div>
-                    </fieldset>
+                    <table className="table">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>Plan Name</label>
+                                <input type="text" className="form-control-plaintext"
+                                       value={this.props.getStore().custom_name} disabled/>
+                            </td>
+                            <td>
+                                <label>Target Amount</label>
+                                <input type="text" className="form-control-plaintext"
+                                       value={this.props.getStore().amount} disabled/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Maturity Date</label>
+                                <input type="text" className="form-control-plaintext"
+                                       value={this.props.getStore().maturity_date} disabled/>
+                            </td>
+                            <td>
+                                <label>Interest Rate p.a.</label>
+                                <input type="text" className="form-control-plaintext" value={"10%"} disabled/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         )

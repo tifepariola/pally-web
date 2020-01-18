@@ -57,7 +57,7 @@ export default class SaveNow extends React.Component {
                 }
                 PlanActions.saveNow(params).subscribe(resp => {
                     console.log(resp.data)
-                    window.location = "/dashboard/save"
+                    window.location = "/dashboard/plan/" + params.type + "s/" + params.plan_id
                 })
             }
             console.log(this.state.savePlan)
@@ -68,13 +68,12 @@ export default class SaveNow extends React.Component {
         console.log(event)
     }
     handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
-
+        this.setState({[event.target.name]: event.target.value});
 
 
     };
     handlePlanChange = event => {
-        this.setState({ savePlan: this.state.plans[event.target.value] });
+        this.setState({savePlan: this.state.plans[event.target.value]});
         if (this.state.plans[event.target.value].plan_type === "fixed") {
             this.setState({
                 amount: this.state.plans[event.target.value].amount,
@@ -114,6 +113,7 @@ export default class SaveNow extends React.Component {
             window.location = "/dashboard/save"
         })
     }
+
     constructor(props) {
         super(props);
 
@@ -132,12 +132,13 @@ export default class SaveNow extends React.Component {
         };
         console.log('hii', this.state.auth_code)
     }
+
     render() {
         return (
 
 
             <div>
-                <Header />
+                <Header/>
                 <div className="wrapper">
                     <div className="container-fluid">
                         {/* <Toast>
@@ -168,23 +169,28 @@ export default class SaveNow extends React.Component {
                                     <div className="card-body">
                                         {this.state.payCB ? <div class="alert alert-warning" role="alert">
                                             Verifying payment, please wait!
-                      </div> : null}
+                                        </div> : null}
                                         <div className="form-group">
                                             <label>Save To</label>
-                                            <select className="form-control" onChange={this.handlePlanChange} name="savePlan">
+                                            <select className="form-control" onChange={this.handlePlanChange}
+                                                    name="savePlan">
                                                 <option value="jara">Jara</option>
                                                 {this.state.plans.map((valueX, index) =>
-                                                    <option value={index}>{valueX.plan_type}: {valueX.custom_name}</option>)}
+                                                    <option
+                                                        value={index}>{valueX.plan_type}: {valueX.custom_name}</option>)}
                                             </select>
                                         </div>
                                         <div className="form-group">
                                             <label>Amount</label>
 
-                                            <input className="form-control" value={this.state.amount} type="number" onChange={this.handleChange} placeholder="100" disabled={this.state.disableAmount} name="amount" />
+                                            <input className="form-control" value={this.state.amount} type="number"
+                                                   onChange={this.handleChange} placeholder="100"
+                                                   disabled={this.state.disableAmount} name="amount"/>
                                         </div>
                                         <div className="form-group">
                                             <label>Payment Method</label>
-                                            <select style={{ 'text-transform': 'capitalize' }} name="card" onChange={this.handleChange} className="form-control">
+                                            <select style={{'text-transform': 'capitalize'}} name="card"
+                                                    onChange={this.handleChange} className="form-control">
                                                 <option value="new">New Card</option>
                                                 {this.state.auth_code ?
                                                     <option>
@@ -192,13 +198,18 @@ export default class SaveNow extends React.Component {
                                                     </option> : null}
                                             </select>
                                         </div>
-                                        <div className="form-group" style={{ display: this.state.card === 'new' ? 'none' : 'block' }}>
+                                        <div className="form-group"
+                                             style={{display: this.state.card === 'new' ? 'none' : 'block'}}>
                                             <label>Enter Password</label>
-                                            <input type="password" className="form-control" onChange={this.handleChange} name="password" />
+                                            <input type="password" className="form-control" onChange={this.handleChange}
+                                                   name="password"/>
                                         </div>
                                         <div className="form-group">
-                                            <input type="checkbox" className="checkbox" value={true} name="agree" onChange={(e) => { this.setState({ agree: !this.state.agree }) }} /> I agree to make this payment
-                                            </div>
+                                            <input type="checkbox" className="checkbox" value={true} name="agree"
+                                                   onChange={(e) => {
+                                                       this.setState({agree: !this.state.agree})
+                                                   }}/> I agree to make this payment
+                                        </div>
                                         {this.state.card === 'new' ?
                                             <PaystackButton
                                                 text={"Save " + this.state.amount + " NGN"}
@@ -213,20 +224,22 @@ export default class SaveNow extends React.Component {
                                                 paystackkey={this.state.key}
                                                 tag="button"
                                             /> :
-                                            <button className="btn btn-primary btn-block" disabled={this.state.agree ? this.state.loading ? true : false : true} onClick={this.payWAuth}>
+                                            <button className="btn btn-primary btn-block"
+                                                    disabled={this.state.agree ? this.state.loading ? true : false : true}
+                                                    onClick={this.payWAuth}>
                                                 {this.state.loading && (
                                                     <i className="log fa fa-refresh fa-spin"></i>
                                                 )}
-                                                Save  {this.state.amount} NGN</button>}
+                                                Save {this.state.amount} NGN</button>}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <Footer />
+                <Footer/>
 
-            </div >
+            </div>
         );
     }
 }

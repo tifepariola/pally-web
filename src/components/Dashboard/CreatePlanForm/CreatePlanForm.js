@@ -28,8 +28,24 @@ class CreatePlanForm extends Component {
         this.state = {
             auth: localStorage.getItem("auth"),
         }
+
+        this.sampleStore = {
+            amount: 100,
+            custom_name: '',
+            maturity_date: ''
+        };
     }
 
+    getStore() {
+        return this.sampleStore;
+    }
+
+    updateStore(update) {
+        this.sampleStore = {
+            ...this.sampleStore,
+            ...update,
+        }
+    }
 
     render() {
 
@@ -40,9 +56,6 @@ class CreatePlanForm extends Component {
                 {name: '3', component: <Step3 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
                 {name: '4', component: <Step4 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
                 {name: '5', component: <Step5 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-                {name: '6', component: <Step6 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-                {name: '7', component: <Step7 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-                {name: '8', component: <Step8 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />}
             ]
         return (
             <div>
@@ -51,14 +64,14 @@ class CreatePlanForm extends Component {
                     <div className="container-fluid">
                         <div className="row py-3">
                             <div className="col-md-2">
-                            <Link to="/">
+                            <Link to="/dashboard/create">
                                 <i className="fa fa-arrow-left"></i> Back
                             </Link>
                             </div>
                             <div className="col-md-8 text-center">
                                 <div className="page-title-box">
-                                    <h2 className="">Create Plan</h2>
-                                    <h6>What plan fits your saving needs?</h6>
+                                    <h2 className="">Create Fixed Plan</h2>
+                                    {/*<h6>What plan fits your saving needs?</h6>*/}
                                 </div>
                             </div>
                         </div>
@@ -75,14 +88,8 @@ class CreatePlanForm extends Component {
                                             backButtonText={"Back"}
                                             backButtonCls={"btn btn-primary float-left"}
                                             nextButtonCls={"btn btn-primary float-right"}
-                                            startAtStep={
-                                                window.sessionStorage.getItem("step")
-                                                    ? parseFloat(window.sessionStorage.getItem("step"))
-                                                    : 0
-                                            }
-                                            onStepChange={step =>
-                                                window.sessionStorage.setItem("step", step)
-                                            }
+                                            hocValidationAppliedTo={[0,1,2,]}
+
                                         />
                                     </div>
                             </div>
