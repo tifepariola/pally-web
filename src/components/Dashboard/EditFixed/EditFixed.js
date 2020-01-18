@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import './EditFixed.css';
 import PlanActions from "../../js/actions/actions";
 import Datetime from "react-datetime";
+import SelectListGroup from "../MyPlans/SelectListGroup";
 
 export default class EditFixed extends Component {
     constructor(props) {
@@ -18,6 +19,27 @@ export default class EditFixed extends Component {
         }
     }
 
+    handleUpdate = event => {
+        event.preventDefault();
+
+        let param = {
+
+                custom_name: this.state.custom_name,
+                amount: this.state.amount
+        }
+
+
+        PlanActions.updatePlan("fixeds", this.state.planId, param).subscribe(resp => {
+            let plan = resp.data.data
+            console.log(plan)
+        })
+    }
+
+    handleChange = event => {
+        this.setState({[event.target.name]: event.target.value});
+        console.log(event)
+    };
+
     componentWillMount() {
 
         PlanActions.getPlanDetail(this.state.planType, this.state.planId).subscribe(resp => {
@@ -26,6 +48,8 @@ export default class EditFixed extends Component {
                 user: JSON.parse(localStorage.getItem('user')),
                 auth_code: JSON.parse(JSON.parse(localStorage.getItem('user')).auth_code_object),
                 plan: resp.data.data,
+                custom_name: resp.data.data.custom_name,
+
             })
         })
     }
@@ -66,30 +90,9 @@ export default class EditFixed extends Component {
                                                 <small>What name will you like your plan to be called?</small>
                                             </label>
                                             <div className="col-sm-7">
-                                                <input type="text" className="form-control" defaultValue={this.state.plan.custom_name}/>
-                                            </div>
-                                        </div>
-                                        <div className="form-group row my-2">
-                                            <label className="col-sm-5 col-form-label py-0">
-                                                <h4 className="m-0">Target Amount</h4>
-                                                <small>How much are you intending to save in total?</small>
-                                            </label>
-                                            <div className="col-sm-7">
-                                                <input type="text" className="form-control" defaultValue={this.state.plan.amount}/>
-                                            </div>
-                                        </div>
-                                        <div className="form-group row my-2">
-                                            <label className="col-sm-5 col-form-label py-0">
-                                                <h4 className="m-0">Maturity Date</h4>
-                                                <small>When will you like your saving to end?</small>
-                                            </label>
-                                            <div className="col-sm-7">
-                                                {
-                                                    this.state.plan.maturity_date ?
-                                                        <Datetime input={true} timeFormat={false} defaultValue={this.state.plan.maturity_date.split(" ")[0]} viewDate={new Date(this.state.plan.maturity_date)} isValidDate={maturityValid} inputProps={{ placeholder: 'Click to select...' }} onChange={this.handleMaturityDate} />
-: null
-                                                }
-
+                                                <input type="text" className="form-control" name="custom_name"
+                                                       defaultValue={this.state.custom_name}
+                                                       onChange={this.handleChange}/>
                                             </div>
                                         </div>
                                         {/*<div className="form-group row my-2">*/}
@@ -110,8 +113,9 @@ export default class EditFixed extends Component {
                                         <button className="btn btn-danger">Delete Plan</button>
                                         <small className="ml-2">Plans can only be deleted when they have zero
                                             balance</small>
-                                        <Link to="/dashboard/view" className="btn btn-primary float-right">Save
-                                            Plan</Link>
+                                        <button onClick={this.handleUpdate} className="btn btn-primary float-right">Save
+                                            Plan
+                                        </button>
                                     </div>
                                 </div>
                             </div>

@@ -23,6 +23,7 @@ import CreateRegular from "./CreateRegular/CreateRegular";
 import EditFixed from "./EditFixed/EditFixed";
 import ViewLifePlan from "./ViewLifePlan/ViewLifePlan";
 import ViewFixedPlan from "./ViewFixedPlan/ViewFixedPlan";
+import EditLife from "./EditLife/EditLife";
 
 function Index() {
   
@@ -43,7 +44,7 @@ function Index() {
         <Route path="/dashboard/create-plan" component={CreatePlanForm} />
         <Route path="/dashboard/create-regular-savings" component={CreateRegular} />
         <Route path="/dashboard/edit/fixeds/:id" component={EditFixed} />
-        <Route path="/dashboard/edit/lives/:id" component={EditFixed} />
+        <Route path="/dashboard/edit/lives/:id" component={EditLife} />
         <Route path="/dashboard/view" component={ViewPlan} />
         <Route path="/dashboard/plan/lifes/:id" component={ViewLifePlan} />
         <Route path="/dashboard/plan/fixeds/:id" component={ViewFixedPlan} />
