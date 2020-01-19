@@ -4,3 +4,6 @@
 body {
     background-color: #f5f6f8 !important;
 }
+.rdtPicker td.rdtDisabled, .rdtPicker td.rdtDisabled:hover {
+    color: #CCCCCC !important;
+}

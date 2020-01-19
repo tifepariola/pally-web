@@ -161,12 +161,6 @@ class ViewFixedPlan extends Component {
                             </div>
                             <div className="p-1 pb-0 mx-3 float-left">
                                 <Link to="/">
-                                    <i className="fa fa-ambulance fa-3x mb-2"></i>
-                                    <h5 className="text-muted font-weight-normal mt-0">Emergency Withdraw</h5>
-                                </Link>
-                            </div>
-                            <div className="p-1 pb-0 mx-3 float-left">
-                                <Link to="/">
                                     <i className="fa fa-money fa-3x mb-2"></i>
                                     <h5 className="text-muted font-weight-normal mt-0">Withdraw</h5>
                                 </Link>

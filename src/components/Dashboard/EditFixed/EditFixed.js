@@ -113,7 +113,7 @@ export default class EditFixed extends Component {
                                         <button className="btn btn-danger">Delete Plan</button>
                                         <small className="ml-2">Plans can only be deleted when they have zero
                                             balance</small>
-                                        <button onClick={this.handleUpdate} className="btn btn-primary float-right">Save
+                                        <button onClick={this.handleUpdate} className="btn btn-primary float-right">Update
                                             Plan
                                         </button>
                                     </div>

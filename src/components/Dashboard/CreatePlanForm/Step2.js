@@ -132,6 +132,7 @@ class Step2 extends Component {
                                 {this.state.selectMaturity ?
                                     <Datetime ref="maturity_date" input={true} timeFormat={false} className={"mt-2"}
                                               defaultValue={this.state.maturity_date} isValidDate={maturityValid}
+                                              viewDate={this.state.maturity_date ? new Date(this.state.maturity_date) : maturityDay}
                                               inputProps={{placeholder: 'Click to select...'}}
                                               onChange={this.handleDatePicker}/>
                                     : null
