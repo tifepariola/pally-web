@@ -7,6 +7,9 @@ import validation from "react-validation-mixin";
 import strategy from "joi-validation-strategy";
 import PaystackButton from "react-paystack";
 import PlanActions from "../../js/actions/actions";
+import UserActions from "../../js/actions/userActions";
+import {forEach} from "react-bootstrap/cjs/utils/ElementChildren";
+import {Link} from "react-router-dom";
 
 class Step2 extends Component {
     constructor(props) {
@@ -15,7 +18,10 @@ class Step2 extends Component {
         this.state = {
             user: JSON.parse(localStorage.getItem('user')),
             automatic_saving: props.getStore().automatic_saving,
-            payment_mode: props.getStore().payment_mode
+            payment_mode: props.getStore().payment_mode,
+            key: "pk_test_8e1083798c5a8dfbb6fd16ffce5542ebfc9b71e0",
+            saved_card_id: props.getStore().saved_card_id ? props.getStore().saved_card_id : 'new',
+            saved_cards: props.getStore().saved_cards ? props.getStore().saved_cards : []
         };
 
         this.validatorTypes = {
@@ -30,10 +36,60 @@ class Step2 extends Component {
     componentDidMount() {
     }
 
-    componentWillUnmount() {
+
+    callback = event => {
+        console.log(event)
+        if (event.status === "success") {
+
+            this.setState({
+                loading: true,
+                payCB: true,
+                paid: false,
+                error: false
+            })
+            let params = {
+                trxref: event.trxref,
+                reference: event.reference,
+                type: 'jara',
+                plan_id: this.state.user.jara.id
+            }
+            PlanActions.saveNow(params).subscribe(resp => {
+                console.log(resp.data)
+                let added_card = resp.data.data.authorization.bin
+                this.setState({
+                    paid: true,
+                    payCB: false,
+                    loading: false
+                })
+                UserActions.getCards().subscribe(resp => {
+                    console.log(resp.data.data)
+                    this.setState({
+                        saved_cards: resp.data.data
+                    })
+                    console.log(event)
+                    resp.data.data.map((e) => {
+                        console.log(e)
+                        console.log(e.bin)
+                        if (e.bin === added_card) {
+                            this.setState({
+                                saved_card_id: e.id,
+                                paid: false
+                            })
+                        }
+                    })
+                    this.props.updateStore({
+                        saved_cards: this.state.saved_cards,
+                    });
+                })
+                // window.location = "/dashboard/save"
+            })
+        }
     }
 
+    close = event => {
 
+        console.log(event)
+    }
     getReference = () => {
         //you can put any unique reference implementation code here
         let text = "";
@@ -53,11 +109,16 @@ class Step2 extends Component {
                     reject(); // form contains errors
                     return;
                 }
+                if (this.state.saved_card_id === "new") {
+                    reject(); // form contains errors
+                    return;
+                }
 
                 console.log("ceke", this.state.automatic_saving)
                 this.props.updateStore({
                     automatic_saving: this.state.automatic_saving,
                     payment_mode: this.state.payment_mode,
+                    saved_card_id: this.state.saved_card_id,
                 });  // Update store here (this is just an example, in reality you will do it via redux or flux)
 
                 resolve(); // form is valid, fire action
@@ -152,7 +213,7 @@ class Step2 extends Component {
                     </fieldset>
                     {this.state.automatic_saving === "true" ? (
                         <fieldset>
-                            <div className="form-group row">
+                            <div className="form-group row mb-3">
                                 <label className="col-sm-5 col-form-label py-0">
                                     <h3 className="m-0">How frequently would you like to save?</h3>
                                     <small>You can modify your saving frequency anytime after creating this
@@ -188,34 +249,47 @@ class Step2 extends Component {
                                     </div>
                                 </div>
                             </div>
-                            {/*<div className="form-group row">*/}
-                            {/*    <label className="col-sm-5 col-form-label py-0">*/}
-                            {/*        <h3 className="m-0">How will you like to pay?</h3>*/}
-                            {/*        <small>Select a card to pay with.</small>*/}
-                            {/*    </label>*/}
-                            {/*    <div className="col-sm-7">*/}
-                            {/*        <select style={{textTransform: 'capitalize'}} name="card"*/}
-                            {/*                onChange={this.handleChange} className="form-control">*/}
-                            {/*            <option value="new">New Card</option>*/}
-                            {/*            {this.state.auth_code ?*/}
-                            {/*                <option>*/}
-                            {/*                    {this.state.auth_code.brand} - **** {this.state.auth_code.last4}*/}
-                            {/*                </option> : null}*/}
-                            {/*        </select>*/}
-                            {/*        <PaystackButton*/}
-                            {/*            text={"Save 100 NGN"}*/}
-                            {/*            class="btn btn-primary btn-block"*/}
-                            {/*            callback={this.callback}*/}
-                            {/*            close={this.close}*/}
-                            {/*            embed={false}*/}
-                            {/*            reference={this.getReference()}*/}
-                            {/*            email={this.state.user.email}*/}
-                            {/*            amount={10000}*/}
-                            {/*            paystackkey={this.state.key}*/}
-                            {/*            tag="button"*/}
-                            {/*        />*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
+                            <div className="form-group row">
+                                <label className="col-sm-5 col-form-label py-0">
+                                    <h3 className="m-0">How will you like to pay?</h3>
+                                    <small>Select a card to pay with.</small>
+                                </label>
+                                <div className="col-sm-7">
+                                    <select style={{textTransform: 'capitalize'}} name="saved_card_id"
+                                            onChange={this.onChange.bind(this)} value={this.state.saved_card_id} className="form-control">
+                                        <option value="new">New Card</option>
+                                        {this.state.saved_cards.map((saved_card, index) =>
+                                            <option
+                                                value={saved_card.id}>{saved_card.brand} - **** {saved_card.last4}
+                                            </option>
+                                        )}
+                                    </select>
+                                    {this.state.saved_card_id === 'new' ?
+                                    <div><PaystackButton
+                                        text={"Add Card"}
+                                        class="btn btn-primary mt-2"
+                                        callback={this.callback}
+                                        close={this.close}
+                                        embed={false}
+                                        reference={this.getReference()}
+                                        email={this.state.user.email}
+                                        amount={10000}
+                                        paystackkey={this.state.key}
+                                        tag="button"
+                                    />
+                                    <small className={"form-text text-muted"}>A payment of 100 NGN will be made into your Jara to confirm card.</small>
+                                    </div>: null }
+                                    {this.state.payCB ? <div class="alert alert-warning" role="alert">
+                                        Verifying payment, please wait!
+                                    </div> : null}
+                                    {this.state.paid ? <div class="alert alert-success" role="alert">
+                                        Payment completed!
+                                    </div> : null}
+                                    {this.state.error ? <div class="alert alert-danger" role="alert">
+                                        There was a problem, try again!
+                                    </div> : null}
+                                </div>
+                            </div>
 
                         </fieldset>) : null
                     }

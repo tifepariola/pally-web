@@ -20,8 +20,17 @@ import Step6 from './Step6';
 import Step7 from './Step7';
 import Step8 from './Step8';
 import PlanActions from "../../js/actions/actions";
+import UserActions from "../../js/actions/userActions";
 
 class CreateRegular extends Component {
+
+    componentWillMount() {
+
+        UserActions.getCards().subscribe(resp => {
+            console.log(resp.data.data)
+            this.sampleStore.saved_cards = resp.data.data
+        })
+    }
 
     constructor(props) {
         super(props);
@@ -36,7 +45,8 @@ class CreateRegular extends Component {
             payment_mode: "daily",
             type: "private",
             saving_amount: 100,
-            maturity_date: ''
+            saved_card_id: 'new',
+            maturity_date: '',
         };
         this.handleNext = this.handleNext.bind(this);
 

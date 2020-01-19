@@ -25,8 +25,9 @@ export default class Step7 extends Component {
                 custom_name: this.props.getStore().custom_name,
                 amount: this.props.getStore().amount,
                 automatic_saving: JSON.parse(this.props.getStore().automatic_saving),
-                saving_amount: this.props.getStore().saving_amount,
+                saving_amount: parseFloat(this.props.getStore().saving_amount),
                 payment_mode: this.props.getStore().payment_mode,
+                saved_card_id: parseInt(this.props.getStore().saved_card_id),
                 maturity_date: this.props.getStore().maturity_date
             };
             PlanActions.createPlan(plansData, "lives").subscribe(resp => {
@@ -67,6 +68,18 @@ export default class Step7 extends Component {
                                 <input type="text" className="form-control-plaintext"
                                        value={this.props.getStore().automatic_saving === "true" ? this.props.getStore().payment_mode : "N/A"}
                                        disabled/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}>
+                                <label>Payment Method</label>
+                                {this.props.getStore().saved_cards.map((saved_card, index) =>
+                                    this.props.getStore().saved_card_id == saved_card.id ?
+
+                                        <input style={{textTransform: 'capitalize'}}  type="text" className="form-control-plaintext"
+                                               value={this.props.getStore().saved_card_id !== "new" ? saved_card.brand + ' - ****' + saved_card.last4 : "N/A"}
+                                               disabled/> : null
+                                )}
                             </td>
                         </tr>
                         <tr>
