@@ -21,6 +21,7 @@ class Profile extends Component {
       email: user.email,
       account_no: "",
       account_name: "",
+      saved_cards: [],
       banks: [],
       date_of_birth: user.date_of_birth ? user.date_of_birth : '',
       gender: user.gender,
@@ -56,6 +57,13 @@ class Profile extends Component {
         banks: resp.data.data
       })
       console.log('banks', resp.data.data)
+    })
+
+    UserActions.getCards().subscribe(resp => {
+      console.log(resp.data.data)
+      this.setState({
+        saved_cards: resp.data.data
+      })
     })
   }
   handleDate(date) {
@@ -173,6 +181,13 @@ class Profile extends Component {
     UserActions.removeBank(params).subscribe(resp => {
       console.log(resp.data)
       window.location = "/dashboard/profile"
+    })
+  };
+  deleteCard = (card) => {
+    UserActions.deleteCard(card).subscribe(resp => {
+      console.log(resp.data)
+      this.componentWillMount()
+      // window.location = "/dashboard/profile"
     })
   };
   handleSubmitNOK = event => {
@@ -353,20 +368,20 @@ class Profile extends Component {
                               <td>Type</td>
                               <td>Number</td>
                               <td>Expiry</td>
-                              {/* <td>Action</td> */}
+                               <td>Action</td>
                             </tr>
                           </thead>
                           <tbody>
-                            {this.state.auth_code ?
+                          {this.state.saved_cards.map((saved_card, index) =>
                               <tr style={{ "text-transform": "capitalize" }}>
                                 <td>
-                                  {this.state.auth_code.brand}
+                                  {saved_card.brand}
                                 </td>
-                                <td>**** {this.state.auth_code.last4}</td>
-                                <td>{this.state.auth_code.exp_month}/{this.state.auth_code.exp_year}</td>
-                                {/* <td>Delete</td> */}
-                              </tr> : null}
-
+                                <td>**** {saved_card.last4}</td>
+                                <td>{saved_card.exp_month}/{saved_card.exp_year}</td>
+                                 <td><button className={"btn btn-link btn-sm"} onClick={() => this.deleteCard(saved_card.id)}>Remove</button></td>
+                              </tr>
+                          )}
                           </tbody>
                         </table>
                       </div>

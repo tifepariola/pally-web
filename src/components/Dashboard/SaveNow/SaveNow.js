@@ -61,6 +61,12 @@ export default class SaveNow extends React.Component {
                         payCB: false,
                         loading: false
                     })
+                    UserActions.getCards().subscribe(resp => {
+                        console.log(resp.data.data)
+                        this.setState({
+                            saved_cards: resp.data.data
+                        })
+                    })
                     // window.location = "/dashboard/save"
                 })
             } else {
@@ -71,14 +77,20 @@ export default class SaveNow extends React.Component {
                     plan_id: this.state.savePlan.id
                 }
                 PlanActions.saveNow(params).subscribe(resp => {
-                    console.log(resp.data)
-                    this.setState({
-                        paid: true,
-                        payCB: false,
-                        loading: false
-                    })
-                    // window.location = "/dashboard/plan/" + params.type + "s/" + params.plan_id
-                },
+                        console.log(resp.data)
+                        this.setState({
+                            paid: true,
+                            payCB: false,
+                            loading: false
+                        })
+                        UserActions.getCards().subscribe(resp => {
+                            console.log(resp.data.data)
+                            this.setState({
+                                saved_cards: resp.data.data
+                            })
+                        })
+                        // window.location = "/dashboard/plan/" + params.type + "s/" + params.plan_id
+                    },
                     error => {
                         console.log("error")
                         this.setState({
@@ -247,7 +259,7 @@ export default class SaveNow extends React.Component {
                                                 <option value="new">New Card</option>
                                                 {this.state.saved_cards.map((saved_card, index) =>
                                                     <option
-                                                        value={saved_card.id}>{saved_card.card_type}: {saved_card.last4}
+                                                        value={saved_card.id}>{saved_card.brand} - **** {saved_card.last4}
                                                     </option>
                                                 )}
                                             </select>
