@@ -19,15 +19,24 @@ const UserActions = {
         }
       });
   },
-  getBanks: () =>  {
-    return axios.get(`https://pallymate-api.herokuapp.com/api/banks/list`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("auth"),
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        }
-      });
-  },
+    getBanks: () =>  {
+        return axios.get(`https://pallymate-api.herokuapp.com/api/banks/list`, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("auth"),
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }
+        });
+    },
+    getCards: () =>  {
+        return axios.post(`https://pallymate-api.herokuapp.com/api/saved-card/all`, {}, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("auth"),
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }
+        });
+    },
   getTx: () =>  {
     return axios.get(`https://pallymate-api.herokuapp.com/api/transactions/history`, {
         headers: {

@@ -3,7 +3,9 @@ import '../Dashboard.css'
 import Header from '../Header/Header'
 import PlanActions from "../../js/actions/actions";
 import PaystackButton from 'react-paystack';
+import {Link} from 'react-router-dom'
 import Footer from "../Footer/Footer";
+import UserActions from "../../js/actions/userActions";
 
 export default class SaveNow extends React.Component {
     componentWillMount() {
@@ -27,6 +29,12 @@ export default class SaveNow extends React.Component {
             console.log('hello', this.state.plans)
 
         })
+        UserActions.getCards().subscribe(resp => {
+            console.log(resp.data.data)
+            this.setState({
+                saved_cards: resp.data.data
+            })
+        })
     }
 
     callback = event => {
@@ -35,7 +43,9 @@ export default class SaveNow extends React.Component {
 
             this.setState({
                 loading: true,
-                payCB: true
+                payCB: true,
+                paid: false,
+                error: false
             })
             if (this.state.savePlan === "jara") {
                 let params = {
@@ -46,7 +56,12 @@ export default class SaveNow extends React.Component {
                 }
                 PlanActions.saveNow(params).subscribe(resp => {
                     console.log(resp.data)
-                    window.location = "/dashboard/save"
+                    this.setState({
+                        paid: true,
+                        payCB: false,
+                        loading: false
+                    })
+                    // window.location = "/dashboard/save"
                 })
             } else {
                 let params = {
@@ -57,8 +72,21 @@ export default class SaveNow extends React.Component {
                 }
                 PlanActions.saveNow(params).subscribe(resp => {
                     console.log(resp.data)
-                    window.location = "/dashboard/plan/" + params.type + "s/" + params.plan_id
-                })
+                    this.setState({
+                        paid: true,
+                        payCB: false,
+                        loading: false
+                    })
+                    // window.location = "/dashboard/plan/" + params.type + "s/" + params.plan_id
+                },
+                    error => {
+                        console.log("error")
+                        this.setState({
+                            error: true,
+                            payCB: false,
+                            loading: false
+                        })
+                    })
             }
             console.log(this.state.savePlan)
         }
@@ -99,19 +127,37 @@ export default class SaveNow extends React.Component {
     payWAuth = () => {
         this.setState({
             loading: true,
-            payCB: true
+            payCB: true,
+            paid: false,
+            error: false
         })
         let params = {
             amount: this.state.amount,
             type: this.state.savePlan === "jara" ? "jara" : this.state.savePlan.plan_type,
             plan_id: this.state.savePlan === "jara" ? this.state.user.jara.id : this.state.savePlan.id,
+            card_id: this.state.card,
             password: this.state.password
         }
         PlanActions.saveWAuth(params).subscribe(resp => {
-            console.log(resp.data)
+                console.log(resp.data)
 
-            window.location = "/dashboard/save"
-        })
+                this.setState({
+                    paid: true,
+                    payCB: false,
+                    loading: false,
+                    card: 'new'
+                })
+                // window.location = "/dashboard/save"
+
+            },
+            error => {
+                console.log("error")
+                this.setState({
+                    error: true,
+                    payCB: false,
+                    loading: false
+                })
+            })
     }
 
     constructor(props) {
@@ -128,6 +174,7 @@ export default class SaveNow extends React.Component {
             savePlan: 'jara',
             payCB: false,
             loading: false,
+            saved_cards: [],
             auth_code: JSON.parse(JSON.parse(localStorage.getItem('user')).auth_code_object)
         };
         console.log('hii', this.state.auth_code)
@@ -170,6 +217,12 @@ export default class SaveNow extends React.Component {
                                         {this.state.payCB ? <div class="alert alert-warning" role="alert">
                                             Verifying payment, please wait!
                                         </div> : null}
+                                        {this.state.paid ? <div class="alert alert-success" role="alert">
+                                            Payment completed! <Link to={"/dashboard"}>Go to Dashboard</Link>
+                                        </div> : null}
+                                        {this.state.error ? <div class="alert alert-danger" role="alert">
+                                            There was a problem, try again!
+                                        </div> : null}
                                         <div className="form-group">
                                             <label>Save To</label>
                                             <select className="form-control" onChange={this.handlePlanChange}
@@ -192,10 +245,11 @@ export default class SaveNow extends React.Component {
                                             <select style={{'text-transform': 'capitalize'}} name="card"
                                                     onChange={this.handleChange} className="form-control">
                                                 <option value="new">New Card</option>
-                                                {this.state.auth_code ?
-                                                    <option>
-                                                        {this.state.auth_code.brand} - **** {this.state.auth_code.last4}
-                                                    </option> : null}
+                                                {this.state.saved_cards.map((saved_card, index) =>
+                                                    <option
+                                                        value={saved_card.id}>{saved_card.card_type}: {saved_card.last4}
+                                                    </option>
+                                                )}
                                             </select>
                                         </div>
                                         <div className="form-group"
