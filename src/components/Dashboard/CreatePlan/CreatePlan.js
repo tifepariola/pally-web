@@ -59,7 +59,7 @@ class CreatePlan extends Component {
                     <div className="container-fluid">
                         <div className="row py-3">
                             <div className="col-md-2">
-                            <Link to="/">
+                            <Link to="/dashboard/plans">
                                 <i className="fa fa-arrow-left"></i> Back
                             </Link>
                             </div>

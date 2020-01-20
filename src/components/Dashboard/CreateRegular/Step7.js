@@ -23,7 +23,7 @@ export default class Step7 extends Component {
             let plansData = {
                 // plan: this.state.plan,
                 custom_name: this.props.getStore().custom_name,
-                amount: this.props.getStore().amount,
+                amount: parseFloat(this.props.getStore().amount),
                 automatic_saving: JSON.parse(this.props.getStore().automatic_saving),
                 saving_amount: parseFloat(this.props.getStore().saving_amount),
                 payment_mode: this.props.getStore().payment_mode,
