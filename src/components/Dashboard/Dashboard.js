@@ -31,8 +31,8 @@ export default class Dashboard extends React.Component {
     constructor() {
         super();
         if (!localStorage.getItem('auth')) {
-            // window.location = "/dashboard/login"
-            history.push('/dashboard/login');
+            window.location = "/dashboard/login"
+            // history.push('/dashboard/login');
         }
         this.state = {
             user: JSON.parse(localStorage.getItem('user')),
