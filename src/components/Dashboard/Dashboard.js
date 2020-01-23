@@ -45,20 +45,7 @@ export default class Dashboard extends React.Component {
     }
 
     componentWillMount() {
-        let plan_list = [];
-        PlanActions.getPlans().subscribe(resp => {
-            console.log(resp.data)
-            resp.data.map((plan) =>
-                plan.plans.map((plan_item) => {
-                    plan_item.plan_type = plan.type
-                    plan_list.push(plan_item)
-                })
-            );
-            this.setState({
-                plans: plan_list
-            })
-            console.log('hello', this.state.plans)
-        })
+
         UserActions.getTx().subscribe(resp => {
             console.log('txss', resp.data)
             this.setState({

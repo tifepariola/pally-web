@@ -24,6 +24,7 @@ import EditFixed from "./EditFixed/EditFixed";
 import ViewLifePlan from "./ViewLifePlan/ViewLifePlan";
 import ViewFixedPlan from "./ViewFixedPlan/ViewFixedPlan";
 import EditLife from "./EditLife/EditLife";
+import Registered from "./Auth/Registered";
 
 function Index() {
   
@@ -35,6 +36,7 @@ function Index() {
         <Route path="/dashboard/login" component={LoginAlt} />
         <Route path="/dashboard/register2" component={Register} />
         <Route path="/dashboard/register" component={RegisterAlt} />
+        <Route path="/dashboard/registered" component={Registered} />
         <Route path="/dashboard/profile" component={Profile} />
         <Route path="/dashboard/forgot2" component={ForgotPass} />
         <Route path="/dashboard/forgot" component={ForgotPassAlt} />

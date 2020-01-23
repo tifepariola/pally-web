@@ -14,6 +14,16 @@ export default class LoginAlt extends React.Component {
         };
     }
 
+    componentWillMount() {
+        const field = 'verified';
+        const url = window.location.href;
+        if (url.indexOf('?' + field) != -1)
+            this.setState({verified: true})
+        else if (url.indexOf('&' + field) != -1)
+            this.setState({verified: true})
+
+    }
+
     componentDidMount() {
     }
 
@@ -22,9 +32,8 @@ export default class LoginAlt extends React.Component {
     };
     handleSubmit = event => {
         event.preventDefault();
-        this.setState({error: false})
+        this.setState({error: false, loading: true, verified: false})
 
-        this.setState({loading: true});
 
         const user = {
             email: this.state.email,
@@ -65,29 +74,29 @@ export default class LoginAlt extends React.Component {
             <div>
                 <div className="row">
                     <div className="col-lg-5 bg-primary p-0" style={{marginBottom: -60}}>
-                      <div className={"container"}>
+                        <div className={"container"}>
               <span className="logo-lg">
                                         <img src={logo} className={"mt-2"} alt="" height="25"/>
                                     </span>
-                      </div>
+                        </div>
                         <div style={{position: 'absolute', top: 'calc(50% - 60px)', right: 0}}>
                             <button type="submit"
                                     className={"btn btn-white btn-lg btn-block rounded-0 text-primary float-right"}>Sign
                                 In
                             </button>
                             <Link to={"/dashboard/register"}
-                                    className={"btn btn-primary btn-lg btn-block mt-0 rounded-0 text-white float-right"}>Sign
+                                  className={"btn btn-primary btn-lg btn-block mt-0 rounded-0 text-white float-right"}>Sign
                                 Up
                             </Link>
                         </div>
-                      <div className={"mb-2"} style={{position: 'absolute', bottom: 0}}>
-                        <div className={"container"}>
-                          <span className={"text-white mr-1"}>Follow</span>
-                      <i className={"fab fa-twitter fa-lg mx-1 text-white"}></i>
-                          <i className={"fab fa-instagram fa-lg mx-1 text-white"}></i>
-                          <i className={"fab fa-facebook fa-lg mx-1 text-white"}></i>
-                      </div>
-                      </div>
+                        <div className={"mb-2"} style={{position: 'absolute', bottom: 0}}>
+                            <div className={"container"}>
+                                <span className={"text-white mr-1"}>Follow</span>
+                                <i className={"fab fa-twitter fa-lg mx-1 text-white"}></i>
+                                <i className={"fab fa-instagram fa-lg mx-1 text-white"}></i>
+                                <i className={"fab fa-facebook fa-lg mx-1 text-white"}></i>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-lg-7 bg-white" style={{marginBottom: -60}}>
                         <div className="account-pages mt-5 mb-5">
@@ -98,12 +107,15 @@ export default class LoginAlt extends React.Component {
                                         <div className="card border-0">
                                             <div className="card-body p-4">
                                                 <div className="text-center w-75 m-auto">
-                                                        <h2 className={"text-primary"}>Good to have you back!</h2>
+                                                    <h2 className={"text-primary"}>Good to have you back!</h2>
                                                     <p className="text-muted mb-4 mt-3">You companion is waiting</p>
                                                 </div>
 
                                                 {this.state.error ? <div class="alert alert-danger" role="alert">
-                                                    Oops that was wrong, check your login details and try again!
+                                                    Oops something went wrong, check your login details and try again!
+                                                </div> : null}
+                                                {this.state.verified ? <div class="alert alert-success" role="alert">
+                                                    Yaay, you're verified, login to your account!
                                                 </div> : null}
 
 
