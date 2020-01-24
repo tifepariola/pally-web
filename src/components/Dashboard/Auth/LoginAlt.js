@@ -98,7 +98,7 @@ export default class LoginAlt extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-7 bg-white" style={{marginBottom: -60}}>
+                    <div className="col-lg-7 bg-white" style={{marginBottom: -60, minHeight: 100+'vh'}}>
                         <div className="account-pages mt-5 mb-5">
 
                             <div className="container">

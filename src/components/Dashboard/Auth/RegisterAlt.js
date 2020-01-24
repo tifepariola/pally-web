@@ -29,6 +29,7 @@ export default class RegisterAlt extends React.Component {
             first_name: this.state.first_name,
             last_name: this.state.last_name,
             phone_number: this.state.phone_number,
+            referral_code: this.state.referral_code,
             email: this.state.email,
             password: this.state.password,
             c_password: this.state.c_password,
@@ -122,7 +123,7 @@ export default class RegisterAlt extends React.Component {
                                                                    placeholder="Enter your email"/>
                                                         </div>
                                                         <div className="form-group mb-3">
-                                                            <label htmlFor="emailaddress">Phone Number</label>
+                                                            <label>Phone Number</label>
                                                             <input className="form-control" type="number"
                                                                    onChange={this.handleChange} name="phone_number"
                                                                    required placeholder="Enter your phone number"/>
@@ -139,6 +140,12 @@ export default class RegisterAlt extends React.Component {
                                                             <input className="form-control" type="password" required
                                                                    name="c_password" onChange={this.handleChange}
                                                                    placeholder="Enter your password again"/>
+                                                        </div>
+                                                        <div className="form-group mb-3">
+                                                            <label>Referral Code</label>
+                                                            <input className="form-control" type="text"
+                                                                   onChange={this.handleChange} name="referral_code"
+                                                                   required placeholder="Enter your referral code"/>
                                                         </div>
 
 
