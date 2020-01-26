@@ -96,9 +96,10 @@ export default class RegisterAlt extends React.Component {
                                                             Create for free</p>
                                                     </div>
 
-                                                    {this.state.error !== '' ? <div class="alert alert-danger" role="alert">
-                                                        {this.state.error}
-                                                    </div> : null}
+                                                    {this.state.error !== '' ?
+                                                        <div class="alert alert-danger" role="alert">
+                                                            {this.state.error}
+                                                        </div> : null}
 
                                                     <form onSubmit={this.handleSubmit}>
 
@@ -145,7 +146,7 @@ export default class RegisterAlt extends React.Component {
                                                             <label>Referral Code</label>
                                                             <input className="form-control" type="text"
                                                                    onChange={this.handleChange} name="referral_code"
-                                                                   required placeholder="Enter your referral code"/>
+                                                                   placeholder="Enter your referral code"/>
                                                         </div>
 
 
