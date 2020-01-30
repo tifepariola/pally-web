@@ -8,6 +8,7 @@ import special from './img/bg-img/special.png'
 import video from './img/bg-img/video.jpg'
 import logo from './img/logo.png'
 import './img/bg-img/welcome-bg.png'
+
 export default class LandingPage extends React.Component {
   componentDidMount() {
     $('#preloader').fadeOut('slow', function () {
@@ -23,6 +24,7 @@ export default class LandingPage extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
+    var year = new Date().getFullYear();
     return (
 
       <div>
@@ -439,7 +441,7 @@ export default class LandingPage extends React.Component {
             </nav>
           </div>
           <div className="copyright-text">
-            <p>Copyright © 2019 Pallymate</p>
+            <p>Copyright &copy; { year } Pallymate</p>
           </div>
         </footer>
       </div>

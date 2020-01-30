@@ -8,6 +8,8 @@ import ForgotPass from "./Auth/ForgotPass";
 import SaveNow from "./SaveNow/SaveNow";
 import MyPlans from "./MyPlans/MyPlans";
 import Withdraw from "./Withdraw/Withdraw";
+import Challenge from "./Challenge/Challenge";
+import JoinChallenge from "./JoinChallenge";
 import { Provider } from "react-redux";
 import store from "../js/store";
 import Profile from "./Profile/Profile";
@@ -53,6 +55,8 @@ function Index() {
         <Route path="/dashboard/plan/lifes/:id" component={ViewLifePlan} />
         <Route path="/dashboard/plan/fixeds/:id" component={ViewFixedPlan} />
         <Route path="/dashboard/withdraw" component={Withdraw} />
+        <Route path="/dashboard/challenge" component={Challenge} />
+        <Route path="/dashboard/join-challenge" component={JoinChallenge} />
       </Router>
     </Provider>
   );

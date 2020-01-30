@@ -43,14 +43,18 @@ export default class Login extends React.Component {
           })
         } else {
           console.log("error logging in");
-          this.setState({ error: true })
-          this.setState({ loading: false });
+          this.setState({
+            error: true,
+            loading: false
+          })
         }
       })
       .catch(err => {
         console.log(err);
-        this.setState({ error: true })
-        this.setState({ loading: false });
+        this.setState({
+          error: true,
+          loading: false
+        })
       });
 
   };

@@ -17,7 +17,7 @@ export default class ViewPlan extends Component {
                             <div className="col-md-2">
                                 <Link to="/dashboard/plans">
                                     <i className="fa fa-arrow-left"></i> Back
-                            </Link>
+                                </Link>
                             </div>
                             <div className="col-md-8 text-center">
                                 <div className="page-title-box">

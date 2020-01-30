@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 import logo from '../assets/images/logo.png'
 import logosm from '../assets/images/logo-sm.png'
 import UserActions from '../../js/actions/userActions';
+import MenuItems from './MenuItems';
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -120,34 +121,24 @@ export default class Header extends React.Component {
 
                                 <li className="has-submenu">
                                     <NavLink exact={true} to="/dashboard" activeClassName="active">
-                                        <i className="fe-airplay"></i>Dashboard</NavLink>
-                                </li>
-                                <li className="has-submenu">
-                                    <NavLink to="/dashboard/save" activeClassName="active">
-                                        <i className="fe-save"></i>
-                                        Save Now
+                                        <i className="fe-airplay"></i>
+                                        Dashboard
                                     </NavLink>
                                 </li>
-
-                                <li className="has-submenu">
-                                    <NavLink to="/dashboard/create" activeClassName="active">
-                                        <i className="fe-layers"></i>Create Plan</NavLink>
-                                </li>
-                                <li className="has-submenu">
-                                    <NavLink to="/dashboard/plans" activeClassName="active">
-                                        <i className="fe-layers"></i>My Plans</NavLink>
-                                </li>
-                                <li className="has-submenu">
-                                    <NavLink to="/dashboard/withdraw" activeClassName="active">
-                                        <i className="fe-credit-card"></i>Withdraw</NavLink>
-                                </li>
-                                <li className="has-submenu">
-                                    <NavLink to="/dashboard/create-challenge" activeClassName="active">
-                                        <i className="fe-layers"></i>Create Challenge</NavLink>
-                                </li>
+                                {
+                                    MenuItems.map((menuitem, index) => (
+                                        <li className="has-submenu" key={index}>
+                                            <NavLink to={menuitem.link} activeClassName="active">
+                                                <i className={menuitem.icon}></i>
+                                                {menuitem.title}
+                                            </NavLink>
+                                        </li>
+                                    ))
+                                }
                                 <li className="" style={{ float: "right" }}>
                                     <NavLink to="/dashboard/withdraw">
-                                        <i className="dripicons-wallet"></i>&#8358;{this.formatMoney(this.state.user.jara.current_balance, 2, '.', ',')}</NavLink>
+                                        <i className="dripicons-wallet"></i>&#8358;{this.formatMoney(this.state.user.jara.current_balance, 2, '.', ',')}
+                                    </NavLink>
                                 </li>
 
                             </ul>
