@@ -130,12 +130,20 @@ export default class Header extends React.Component {
                                 </li>
 
                                 <li className="has-submenu">
+                                    <NavLink to="/dashboard/create" activeClassName="active">
+                                        <i className="fe-layers"></i>Create Plan</NavLink>
+                                </li>
+                                <li className="has-submenu">
                                     <NavLink to="/dashboard/plans" activeClassName="active">
                                         <i className="fe-layers"></i>My Plans</NavLink>
                                 </li>
                                 <li className="has-submenu">
                                     <NavLink to="/dashboard/withdraw" activeClassName="active">
                                         <i className="fe-credit-card"></i>Withdraw</NavLink>
+                                </li>
+                                <li className="has-submenu">
+                                    <NavLink to="/dashboard/create-challenge" activeClassName="active">
+                                        <i className="fe-layers"></i>Create Challenge</NavLink>
                                 </li>
                                 <li className="" style={{ float: "right" }}>
                                     <NavLink to="/dashboard/withdraw">
