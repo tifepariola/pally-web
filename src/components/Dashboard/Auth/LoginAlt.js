@@ -56,14 +56,18 @@ export default class LoginAlt extends React.Component {
                     })
                 } else {
                     console.log("error logging in");
-                    this.setState({error: true})
-                    this.setState({loading: false});
+                    this.setState({
+                      error: true,
+                      loading: false
+                    })
                 }
             })
             .catch(err => {
                 console.log(err);
-                this.setState({error: true})
-                this.setState({loading: false});
+                this.setState({
+                  error: true,
+                  loading: false
+                })
             });
 
     };
@@ -111,10 +115,10 @@ export default class LoginAlt extends React.Component {
                                                     <p className="text-muted mb-4 mt-3">You companion is waiting</p>
                                                 </div>
 
-                                                {this.state.error ? <div class="alert alert-danger" role="alert">
+                                                {this.state.error ? <div className="alert alert-danger" role="alert">
                                                     Oops something went wrong, check your login details and try again!
                                                 </div> : null}
-                                                {this.state.verified ? <div class="alert alert-success" role="alert">
+                                                {this.state.verified ? <div className="alert alert-success" role="alert">
                                                     Yaay, you're verified, login to your account!
                                                 </div> : null}
 

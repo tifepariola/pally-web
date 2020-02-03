@@ -3,7 +3,8 @@ import './Dashboard.css';
 import {Doughnut} from 'react-chartjs-2';
 import history from './../../history';
 import Header from './Header/Header';
-import {Link} from 'react-router-dom'
+import Footer from './Footer/Footer';
+import {Link} from 'react-router-dom';
 import PlanActions from "../js/actions/actions";
 import UserActions from '../js/actions/userActions';
 
@@ -224,22 +225,7 @@ export default class Dashboard extends React.Component {
                         </div>
                     </div>
                 </div>
-                <footer className="footer">
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-md-6">
-                                OnePally &copy; 2019
-                            </div>
-                            <div className="col-md-6">
-                                <div className="text-md-right footer-links d-none d-sm-block">
-                                    <a href="/">About Us</a>
-                                    <a href="/">Help</a>
-                                    <a href="/">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                <Footer />
             </div>
         );
     }

@@ -8,6 +8,8 @@ import ForgotPass from "./Auth/ForgotPass";
 import SaveNow from "./SaveNow/SaveNow";
 import MyPlans from "./MyPlans/MyPlans";
 import Withdraw from "./Withdraw/Withdraw";
+import Challenge from "./Challenge/Challenge";
+import JoinChallenge from "./JoinChallenge";
 import { Provider } from "react-redux";
 import store from "../js/store";
 import Profile from "./Profile/Profile";
@@ -25,6 +27,7 @@ import ViewLifePlan from "./ViewLifePlan/ViewLifePlan";
 import ViewFixedPlan from "./ViewFixedPlan/ViewFixedPlan";
 import EditLife from "./EditLife/EditLife";
 import Registered from "./Auth/Registered";
+import CreateChallenge from "./CreateChallenge/CreateChallenge";
 
 function Index() {
   
@@ -45,12 +48,15 @@ function Index() {
         <Route path="/dashboard/create" component={CreatePlan} />
         <Route path="/dashboard/create-fixed" component={CreatePlanForm} />
         <Route path="/dashboard/create-regular-savings" component={CreateRegular} />
+        <Route path="/dashboard/create-challenge" component={CreateChallenge} />
         <Route path="/dashboard/edit/fixeds/:id" component={EditFixed} />
         <Route path="/dashboard/edit/lives/:id" component={EditLife} />
         <Route path="/dashboard/view" component={ViewPlan} />
         <Route path="/dashboard/plan/lifes/:id" component={ViewLifePlan} />
         <Route path="/dashboard/plan/fixeds/:id" component={ViewFixedPlan} />
         <Route path="/dashboard/withdraw" component={Withdraw} />
+        <Route path="/dashboard/challenge" component={Challenge} />
+        <Route path="/dashboard/join-challenge" component={JoinChallenge} />
       </Router>
     </Provider>
   );
