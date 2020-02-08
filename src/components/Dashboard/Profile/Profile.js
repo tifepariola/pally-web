@@ -6,14 +6,15 @@ import Footer from "../Footer/Footer";
 import Datetime from 'react-datetime';
 import Modal from "react-responsive-modal";
 import UserActions from "../../js/actions/userActions";
+import Cookie from "../../../utils/cookie";
 
 class Profile extends Component {
   constructor(props) {
     super(props);
-    let user = JSON.parse(localStorage.getItem('user'))
+    let user = Cookie.getUser()
     this.state = {
       addBank: false,
-      user: user,
+      user,
       last_name: user.last_name,
       bvn: user.bvn ? user.bvn : '',
       first_name: user.first_name,
@@ -41,7 +42,7 @@ class Profile extends Component {
       id_issued_date: user.id_issued_date ? user.id_issued_date : '',
       id_expiry_date: user.id_expiry_date ? user.id_expiry_date : '',
       maiden_name: user.maiden_name ? user.maiden_name : '',
-      auth_code: JSON.parse(JSON.parse(localStorage.getItem('user')).auth_code_object),
+      auth_code: JSON.parse(user.auth_code_object),
       error: false,
       done: false
 

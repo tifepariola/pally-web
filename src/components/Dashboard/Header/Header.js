@@ -5,13 +5,14 @@ import logo from '../assets/images/logo.png'
 import logosm from '../assets/images/logo-sm.png'
 import UserActions from '../../js/actions/userActions';
 import MenuItems from './MenuItems';
+import Cookie from '../../../utils/cookie';
 
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             mobile_menu: false,
-            user: JSON.parse(localStorage.getItem('user'))
+            user: Cookie.getUser()
         }
         this.openMenu = this.openMenu.bind(this);
     }
@@ -35,8 +36,8 @@ export default class Header extends React.Component {
             let user = userData.data.data
             user.jara = userData.data.jara[0]
             console.log(user)
-            localStorage.setItem('user', JSON.stringify(user))
-            this.setState({ user: user })
+            Cookie.setUser(user)
+            this.setState({ user })
         })
         console.log('format money ', this.formatMoney(556711.02, 2, '.', ','))
     }
@@ -44,7 +45,8 @@ export default class Header extends React.Component {
         this.setState({ mobile_menu: !this.state.mobile_menu })
     }
     logout() {
-        localStorage.clear();
+        Cookie.deleteAuth();
+        Cookie.deleteUser();
         window.location = "/dashboard/login"
     }
     render() {

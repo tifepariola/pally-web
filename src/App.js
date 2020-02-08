@@ -6,6 +6,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import history from './history';
 import { hotjar } from 'react-hotjar';
 hotjar.initialize(1534851, 6);
+
 function App() {
   return (
       <Router history={history}>

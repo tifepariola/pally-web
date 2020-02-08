@@ -6,6 +6,7 @@ import PaystackButton from 'react-paystack';
 import {Link} from 'react-router-dom'
 import Footer from "../Footer/Footer";
 import UserActions from "../../js/actions/userActions";
+import Cookie from '../../../utils/cookie';
 
 export default class SaveNow extends React.Component {
     componentWillMount() {
@@ -174,20 +175,21 @@ export default class SaveNow extends React.Component {
 
     constructor(props) {
         super(props);
+        var user = Cookie.getUser()
 
         this.state = {
-            auth: localStorage.getItem("auth"),
-            user: JSON.parse(localStorage.getItem('user')),
+            auth: Cookie.getAuth(),
+            user,
             plans: [],
             key: "pk_test_8e1083798c5a8dfbb6fd16ffce5542ebfc9b71e0",
-            email: JSON.parse(localStorage.getItem("user")).email,  // customer email
+            email: user.email,  // customer email
             amount: 100,
             card: 'new',
             savePlan: 'jara',
             payCB: false,
             loading: false,
             saved_cards: [],
-            auth_code: JSON.parse(JSON.parse(localStorage.getItem('user')).auth_code_object)
+            auth_code: JSON.parse(user.auth_code_object)
         };
         console.log('hii', this.state.auth_code)
     }

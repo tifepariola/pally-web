@@ -1,29 +1,20 @@
-import axios from "axios";
+import $axios from "api/api";
 
 import { GET_USER, USER_LOADING } from "../constants/action-types";
 
-const token = localStorage.getItem("auth");
 export const getUser = () => dispatch => {
-  axios
-    .get(`https://pallymate-api.herokuapp.com/api/user`, {
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    })
-    .then(res => {
+  $axios.get(`/user`).subscribe(
+    (response) => {
       dispatch({
         type: GET_USER,
-        payload: res.data.data
+        payload: response.data.data
       });
+    },
+    (error) => dispatch({
+      type: GET_USER,
+      payload: {}
     })
-    .catch(err =>
-      dispatch({
-        type: GET_USER,
-        payload: {}
-      })
-    );
+  );
 };
 
 // Plan loading

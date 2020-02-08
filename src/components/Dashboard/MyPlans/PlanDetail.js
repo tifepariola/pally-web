@@ -7,6 +7,7 @@ import SelectListGroup from "./SelectListGroup";
 import Datetime from 'react-datetime';
 import PlanActions from "../../js/actions/actions";
 import {getPlanDetail} from "../../js/actions/planActions";
+import Cookie from "../../../utils/cookie";
 
 class PlanDetail extends Component {
 
@@ -15,7 +16,7 @@ class PlanDetail extends Component {
         const {id, plan_type} = this.props.match.params
 
         this.state = {
-            user: JSON.parse(localStorage.getItem('user')),
+            user: Cookie.getUser(),
             open: false,
             show: false,
             plan: {

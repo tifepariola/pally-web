@@ -13,10 +13,11 @@ import { Link } from 'react-router-dom'
 import PlanActions from "../../js/actions/actions";
 import Footer from "../Footer/Footer";
 import Datetime from 'react-datetime';
+import Cookie from "../../../utils/cookie";
 
 class CreatePlan extends Component {
     componentWillMount() {
-        if (!localStorage.getItem("auth")) {
+        if (!Cookie.getAuth()) {
             history.push("/dashboard/login");
         }
 
@@ -45,7 +46,7 @@ class CreatePlan extends Component {
         super(props);
 
         this.state = {
-            auth: localStorage.getItem("auth"),
+            auth: Cookie.getAuth(),
         }
     }
 

@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import './EditLife.css';
 import PlanActions from "../../js/actions/actions";
 import Datetime from "react-datetime";
+import Cookie from '../../../utils/cookie';
 
 export default class EditLife extends Component {
     constructor(props) {
@@ -49,9 +50,10 @@ export default class EditLife extends Component {
             console.log(resp.data.data)
             console.log(resp.data.data.automatic_saving)
             console.log(this.state.automatic_saving)
+            var user = Cookie.getUser()
             this.setState({
-                user: JSON.parse(localStorage.getItem('user')),
-                auth_code: JSON.parse(JSON.parse(localStorage.getItem('user')).auth_code_object),
+                user,
+                auth_code: JSON.parse(user.auth_code_object),
                 plan: resp.data.data,
                 custom_name: resp.data.data.custom_name,
                 amount: resp.data.data.amount,

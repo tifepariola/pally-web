@@ -6,6 +6,7 @@ import Modal from "react-responsive-modal";
 import Datetime from 'react-datetime';
 import PlanActions from "../../js/actions/actions";
 import {getPlanDetail} from "../../js/actions/planActions";
+import Cookie from "../../../utils/cookie";
 
 class ViewLifePlan extends Component {
 
@@ -14,7 +15,7 @@ class ViewLifePlan extends Component {
         const {id} = this.props.match.params
 
         this.state = {
-            user: JSON.parse(localStorage.getItem('user')),
+            user: Cookie.getUser(),
             open: false,
             show: false,
             plan: {

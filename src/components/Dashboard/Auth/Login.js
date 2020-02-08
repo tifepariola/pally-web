@@ -1,9 +1,10 @@
 import React from "react";
 import "./Auth.css";
-import axios from "axios";
+import $axios from "api/api";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import UserActions from '../../js/actions/userActions';
+import Cookie from 'utils/cookie';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -16,33 +17,34 @@ export default class Login extends React.Component {
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
   handleSubmit = event => {
     event.preventDefault();
-    this.setState({ error: false })
-
-    this.setState({ loading: true });
-
+    this.setState({
+      error: false,
+      loading: true
+    })
     const user = {
       email: this.state.email,
       password: this.state.password
     };
 
-    axios
-      .post(`https://pallymate-api.herokuapp.com/api/login`, user)
-      .then(res => {
+    $axios.post(`/login`, user).subscribe(
+      res => {
         // res.status === 200 ? window.location = '/dashboard/login' :
         if (res.data.data.token) {
-          localStorage.setItem("auth", res.data.data.token);
+          Cookie.setAuth(res.data.data.token)
           console.log(res.data);
           UserActions.getUser().subscribe(userData => {
             let user = userData.data.data
             user.jara = userData.data.jara[0]
             console.log(user)
-            localStorage.setItem('user', JSON.stringify(user))
+            Cookie.setUser(user)
+            // localStorage.setItem('user', JSON.stringify(user))
             window.location = "/dashboard";
           })
         } else {
-          console.log("error logging in");
+          console.log("Error logging in");
           this.setState({
             error: true,
             loading: false
@@ -58,6 +60,7 @@ export default class Login extends React.Component {
       });
 
   };
+
   render() {
     const { loading } = this.state;
     return (

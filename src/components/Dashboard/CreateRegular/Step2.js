@@ -10,13 +10,14 @@ import PlanActions from "../../js/actions/actions";
 import UserActions from "../../js/actions/userActions";
 import {forEach} from "react-bootstrap/cjs/utils/ElementChildren";
 import {Link} from "react-router-dom";
+import Cookie from 'utils/cookie'
 
 class Step2 extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            user: JSON.parse(localStorage.getItem('user')),
+            user: Cookie.getUser(),
             automatic_saving: props.getStore().automatic_saving,
             payment_mode: props.getStore().payment_mode,
             key: "pk_test_8e1083798c5a8dfbb6fd16ffce5542ebfc9b71e0",

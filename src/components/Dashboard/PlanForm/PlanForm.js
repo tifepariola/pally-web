@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import {Link} from 'react-router-dom'
 import './PlanForm.css';
 import PlanActions from "../../js/actions/actions";
+import Cookie from '../../../utils/cookie';
 
 export default class PlanForm extends Component {
     constructor(props) {
@@ -21,9 +22,10 @@ export default class PlanForm extends Component {
 
         PlanActions.getPlanDetail(this.state.planType, this.state.planId).subscribe(resp => {
             console.log(resp.data.data)
+            var user = Cookie.getUser()
             this.setState({
-                user: JSON.parse(localStorage.getItem('user')),
-                auth_code: JSON.parse(JSON.parse(localStorage.getItem('user')).auth_code_object),
+                user,
+                auth_code: JSON.parse(user.auth_code_object),
                 plan: resp.data.data,
             })
         })

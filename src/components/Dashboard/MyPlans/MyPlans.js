@@ -19,10 +19,11 @@ import Spinner from "./Spinner";
 import PlanTable from "./PlanTable";
 import Footer from "../Footer/Footer";
 import Datetime from 'react-datetime';
+import Cookie from "../../../utils/cookie";
 
 class MyPlans extends Component {
   componentWillMount() {
-    if (!localStorage.getItem("auth")) {
+    if (!Cookie.getAuth()) {
       history.push("/dashboard/login");
     }
 
@@ -51,7 +52,7 @@ class MyPlans extends Component {
     super(props);
 
     this.state = {
-      auth: localStorage.getItem("auth"),
+      auth: Cookie.getAuth(),
       show: false,
       open: false,
       display: "none",

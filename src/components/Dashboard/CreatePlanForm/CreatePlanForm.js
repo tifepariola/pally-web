@@ -26,7 +26,7 @@ class CreatePlanForm extends Component {
         super(props);
 
         this.state = {
-            auth: localStorage.getItem("auth"),
+            // auth: localStorage.getItem("auth"),
         }
 
         this.sampleStore = {

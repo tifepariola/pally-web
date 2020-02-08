@@ -7,6 +7,7 @@ import Footer from './Footer/Footer';
 import {Link} from 'react-router-dom';
 import PlanActions from "../js/actions/actions";
 import UserActions from '../js/actions/userActions';
+import Cookie from '../../utils/cookie';
 
 const data = {
     labels: [
@@ -31,17 +32,18 @@ const data = {
 export default class Dashboard extends React.Component {
     constructor() {
         super();
-        if (!localStorage.getItem('auth')) {
+        if (!Cookie.getAuth()) {
             window.location = "/dashboard/login"
             // history.push('/dashboard/login');
         }
+        var user = Cookie.getUser()
         this.state = {
-            user: JSON.parse(localStorage.getItem('user')),
-            auth: localStorage.getItem('auth'),
+            user,
+            auth: Cookie.getAuth(),
             txs: [],
             savingsBalance: 0,
             currentReturns: 0,
-            totalBalance: JSON.parse(localStorage.getItem('user')).jara.current_balance
+            totalBalance: user.jara.current_balance
         }
     }
 

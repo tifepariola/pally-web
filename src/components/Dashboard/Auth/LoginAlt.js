@@ -1,10 +1,11 @@
 import React from "react";
 import "./Auth.css";
-import axios from "axios";
+import $axios from "api/api";
 import "./Login.css";
 import {Link} from "react-router-dom";
 import UserActions from '../../js/actions/userActions';
 import logo from '../assets/images/logo.png'
+import Cookie from "../../../utils/cookie";
 
 export default class LoginAlt extends React.Component {
     constructor(props) {
@@ -17,41 +18,49 @@ export default class LoginAlt extends React.Component {
     componentWillMount() {
         const field = 'verified';
         const url = window.location.href;
-        if (url.indexOf('?' + field) != -1)
+        if (url.indexOf('?' + field) !== -1)
             this.setState({verified: true})
-        else if (url.indexOf('&' + field) != -1)
+        else if (url.indexOf('&' + field) !== -1)
             this.setState({verified: true})
-
     }
 
     componentDidMount() {
+        // Cookie.deleteAuth()
+        // Cookie.deleteUser()
+        // console.log('Pallymate user => ', Cookie.getUser())
     }
 
     handleChange = event => {
         this.setState({[event.target.name]: event.target.value});
     };
+
     handleSubmit = event => {
         event.preventDefault();
-        this.setState({error: false, loading: true, verified: false})
-
-
+        this.setState({
+            error: false,
+            loading: true,
+            verified: false
+        })
         const user = {
             email: this.state.email,
             password: this.state.password
         };
 
-        axios
-            .post(`https://pallymate-api.herokuapp.com/api/login`, user)
-            .then(res => {
+        $axios.post(`/login`, user).subscribe(
+            res => {
                 // res.status === 200 ? window.location = '/dashboard/login' :
                 if (res.data.data.token) {
-                    localStorage.setItem("auth", res.data.data.token);
+                    Cookie.setAuth(res.data.data.token)
+                    console.log('Auth token: ', Cookie.getAuth())
+                    $axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.data.token}`;
+                    // localStorage.setItem("auth", res.data.data.token);
                     console.log(res.data);
                     UserActions.getUser().subscribe(userData => {
                         let user = userData.data.data
                         user.jara = userData.data.jara[0]
                         console.log(user)
-                        localStorage.setItem('user', JSON.stringify(user))
+                        Cookie.setUser(user)
+                        // localStorage.setItem('user', JSON.stringify(user))
                         window.location = "/dashboard";
                     })
                 } else {
@@ -61,15 +70,15 @@ export default class LoginAlt extends React.Component {
                       loading: false
                     })
                 }
-            })
-            .catch(err => {
+            },
+            err => {
                 console.log(err);
                 this.setState({
                   error: true,
                   loading: false
                 })
-            });
-
+            }
+        );
     };
 
     render() {
@@ -85,7 +94,7 @@ export default class LoginAlt extends React.Component {
                         </div>
                         <div style={{position: 'absolute', top: 'calc(50% - 60px)', right: 0}}>
                             <button type="submit"
-                                    className={"btn btn-white btn-lg btn-block rounded-0 text-primary float-right"}>Sign
+                                className={"btn btn-white btn-lg btn-block rounded-0 text-primary float-right"}>Sign
                                 In
                             </button>
                             <Link to={"/dashboard/register"}

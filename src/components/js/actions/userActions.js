@@ -1,111 +1,55 @@
-const axios = require('axios-observable').Axios;
+import $axios from 'api/api';
 
 const UserActions = {
     getUser: () => {
-        return axios.get(`https://pallymate-api.herokuapp.com/api/user`, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth"),
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
+        return $axios.get(`/user`);
     },
+
     getTxLog: () => {
-        return axios.get(`https://pallymate-api.herokuapp.com/api/transactions/history`, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth"),
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
+        return $axios.get(`/transactions/history`);
     },
+
     getBanks: () => {
-        return axios.get(`https://pallymate-api.herokuapp.com/api/banks/list`, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth"),
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
+        return $axios.get(`/banks/list`);
     },
+
     getCards: () => {
-        return axios.post(`https://pallymate-api.herokuapp.com/api/saved-card/all`, {}, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth"),
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
+        return $axios.post(`/saved-card/all`, {});
     },
+
     deleteCard: (card) => {
-        return axios.delete(`https://pallymate-api.herokuapp.com/api/saved-card/` + card, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth"),
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
+        return $axios.delete(`/saved-card/${card}`);
     },
+
     getTx: () => {
-        return axios.get(`https://pallymate-api.herokuapp.com/api/transactions/history`, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth")
-            }
-        });
+        return $axios.get(`/transactions/history`);
     },
+
     getBalance: () => {
-        return axios.get(`https://pallymate-api.herokuapp.com/api/transactions/balance`, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth"),
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
+        return $axios.get(`/transactions/balance`);
     },
+
     updateUser: (user) => {
-        return axios.post(`https://pallymate-api.herokuapp.com/api/user/update`, user, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth"),
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
+        return $axios.post(`/user/update`, user);
     },
+
     verifyBank: (params) => {
-        return axios.get(`https://pallymate-api.herokuapp.com/api/verify/account_no?account_no=` + params.account_no + `&bank_code=` + params.bank_code, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth"),
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
+        return $axios.get(
+            `/verify/account_no?account_no=${params.account_no}&bank_code=${params.bank_code}`
+        );
     },
+
     submitBank: (params) => {
-        return axios.post(`https://pallymate-api.herokuapp.com/api/banks/save`, params, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth"),
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
+        return $axios.post(`/banks/save`, params);
     },
+
     changePass: (params) => {
-        return axios.post(`https://pallymate-api.herokuapp.com/api/user/password/change`, params, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth"),
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
+        return $axios.post(`/user/password/change`, params);
     },
+
     removeBank: (params) => {
-        return axios.post(`https://pallymate-api.herokuapp.com/api/banks/remove`, params, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("auth"),
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
+        return $axios.post(`/banks/remove`, params);
     }
 }
+
 export default UserActions;

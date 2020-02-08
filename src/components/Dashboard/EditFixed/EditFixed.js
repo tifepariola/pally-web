@@ -7,6 +7,7 @@ import './EditFixed.css';
 import PlanActions from "../../js/actions/actions";
 import Datetime from "react-datetime";
 import SelectListGroup from "../MyPlans/SelectListGroup";
+import Cookie from '../../../utils/cookie';
 
 export default class EditFixed extends Component {
     constructor(props) {
@@ -44,9 +45,10 @@ export default class EditFixed extends Component {
 
         PlanActions.getPlanDetail(this.state.planType, this.state.planId).subscribe(resp => {
             console.log(resp.data.data)
+            var user = Cookie.getUser()
             this.setState({
-                user: JSON.parse(localStorage.getItem('user')),
-                auth_code: JSON.parse(JSON.parse(localStorage.getItem('user')).auth_code_object),
+                user,
+                auth_code: JSON.parse(user.auth_code_object),
                 plan: resp.data.data,
                 custom_name: resp.data.data.custom_name,
 
