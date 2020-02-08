@@ -33,18 +33,18 @@ class Challenge extends Component {
                     </div>
 
                     <div className="row">
-                        <div class="col-sm-12 col-md-4 col-lg-4">
-                            <div class="bg-white p-2 text-center">
+                        <div className="col-sm-12 col-md-4 col-lg-4">
+                            <div className="bg-white p-2 text-center">
                                 <DetailCard title="Saved Amount" value="201,000.00" />
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-4">
-                            <div class="bg-white p-2 text-center">
+                        <div className="col-sm-12 col-md-4 col-lg-4">
+                            <div className="bg-white p-2 text-center">
                                 <DetailCard title="Interests" value="47.12" />
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-4">
-                            <div class="bg-white p-2 text-center">
+                        <div className="col-sm-12 col-md-4 col-lg-4">
+                            <div className="bg-white p-2 text-center">
                                 <DetailCard title="Interest per Annum" value="10&#37;" />
                             </div>
                         </div>

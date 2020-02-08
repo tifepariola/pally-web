@@ -35,7 +35,7 @@ export default class Header extends React.Component {
         UserActions.getUser().subscribe(userData => {
             let user = userData.data.data
             user.jara = userData.data.jara[0]
-            console.log(user)
+            // console.log(user)
             Cookie.setUser(user)
             this.setState({ user })
         })

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
 class DetailCard extends Component {
@@ -14,14 +15,8 @@ class DetailCard extends Component {
 }
 
 DetailCard.propTypes = {
-    title: {
-        type: String,
-        required: true
-    },
-    value: {
-        type: String,
-        required: true
-    }
+    title: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
 };
 
 export default DetailCard;

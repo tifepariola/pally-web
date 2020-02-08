@@ -13,9 +13,6 @@ export default class Cookie {
     static cookie = {}
 
     static _extractFromDocument () {
-        // var pallyCookiePattern = /(pally_[a-z0-9]+=[a-z0-9{]+)\}*;*/ig
-        // // var pallyCookiePattern = /(pally_[a-z0-9]+=.+);*/ig
-        // let pallyPattern = /(pally_[a-z0-9])=(.+)/i
         var cookies = {}
         document.cookie.split(';').forEach(item => {
             let cookieArray = item.split('=')

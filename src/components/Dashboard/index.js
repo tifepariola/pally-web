@@ -27,6 +27,7 @@ import ViewLifePlan from "./ViewLifePlan/ViewLifePlan";
 import ViewFixedPlan from "./ViewFixedPlan/ViewFixedPlan";
 import EditLife from "./EditLife/EditLife";
 import Registered from "./Auth/Registered";
+import CreateChallenge from "./CreateChallenge/CreateChallenge";
 
 function Index() {
   
@@ -47,6 +48,7 @@ function Index() {
         <Route path="/dashboard/create" component={CreatePlan} />
         <Route path="/dashboard/create-fixed" component={CreatePlanForm} />
         <Route path="/dashboard/create-regular-savings" component={CreateRegular} />
+        <Route path="/dashboard/create-challenge" component={CreateChallenge} />
         <Route path="/dashboard/edit/fixeds/:id" component={EditFixed} />
         <Route path="/dashboard/edit/lives/:id" component={EditLife} />
         <Route path="/dashboard/view" component={ViewPlan} />
