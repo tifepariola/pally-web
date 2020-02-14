@@ -7,6 +7,7 @@
     "axios-observable": "^1.1.2",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
+    "fastest-validator": "^1.0.2",
     "joi": "^14.3.1",
     "joi-validation-strategy": "^0.3.3",
     "jquery": "^3.4.1",

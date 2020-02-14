@@ -8,7 +8,6 @@ let $axios = axios.create({
 
 // Set important Headers
 $axios.defaults.headers.post['Content-Type'] = 'application/json';
-console.log('Authorization => ', Cookie.getAuth());
 $axios.interceptors.request.use(
   (config) => {
     config.headers['Authorization'] = `Bearer ${Cookie.getAuth()}`;
