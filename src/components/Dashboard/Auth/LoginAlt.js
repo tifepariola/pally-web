@@ -24,12 +24,6 @@ export default class LoginAlt extends React.Component {
             this.setState({verified: true})
     }
 
-    componentDidMount() {
-        // Cookie.deleteAuth()
-        // Cookie.deleteUser()
-        // console.log('Pallymate user => ', Cookie.getUser())
-    }
-
     handleChange = event => {
         this.setState({[event.target.name]: event.target.value});
     };

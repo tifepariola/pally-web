@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import DetailCard from '../../DetailCard'
 import './JoinChallenge.css';
 
 class JoinChallenge extends Component {
@@ -14,7 +13,8 @@ class JoinChallenge extends Component {
              * 0: Show Challenge instructions
              * 1: Show Challenge details
              */
-            instructionsOrDetails: 0
+            instructionsOrDetails: 0,
+            loading: true
         };
         this.showChallengeDetails = this.showChallengeDetails.bind(this);
         this.joinChallenge = this.joinChallenge.bind(this);
@@ -46,23 +46,29 @@ class JoinChallenge extends Component {
                             {
                                 this.state.instructionsOrDetails === 0 ?
                                 (
-                                    <div className="col-md-8 text-center mt-3">
-                                        <div className="page-title-box">
-                                            <h2 className="mb-3">Join A Public Challenge</h2>
-                                            <p className="join-challenge-instructions">
-                                                This is a free Savers challenge. Each user is expected to have
-                                                saved a sum of &#8358;500,000 by Oct. 20, 2020. You will earn
-                                                up to 10&#37; per annum and interest would be paid daily.
-                                            </p>
-                                            <p  className="join-challenge-instructions">
-                                                NO ONE HAS ACCESS TO YOUR MONEY, YOU WILL GET YOUR
-                                                FUNDS OCT. 20, 2022.
-                                            </p>
-                                            <button 
-                                                className="btn btn-primary btn-md mt-3"
-                                                onClick={this.showChallengeDetails}>
-                                                JOIN THE CHALLENGE
-                                            </button>
+                                    <div className="row mt-2">
+                                        <div className="col-xl-4 offset-xl-4">
+                                            <div to="/dashboard/create-regular-savings">
+                                                <div className="card widget-flat bg-primary text-white"
+                                                    onClick={this.showChallengeDetails}>
+                                                    <div className="card-body p-0">
+                                                        <div className="p-3 pb-0">
+                                                            <h3>Join the Challenge</h3>
+                                                            <div>
+                                                                <p className="join-challenge-instructions">
+                                                                    This is a free Savers challenge. Each user is expected to have
+                                                                    saved a sum of &#8358;500,000 by Oct. 20, 2020. You will earn
+                                                                    up to 10&#37; per annum and interest would be paid daily.
+                                                                </p>
+                                                                <p  className="join-challenge-instructions">
+                                                                    NO ONE HAS ACCESS TO YOUR MONEY, YOU WILL GET YOUR
+                                                                    FUNDS OCT. 20, 2022.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 )

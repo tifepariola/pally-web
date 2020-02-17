@@ -6,7 +6,7 @@ export default () => {
     <div className="mx-auto">
       <img
         src={spinner}
-        style={{ width: "200px", margin: "auto", display: "block" }}
+        style={{ width: "50px", margin: "auto", display: "block" }}
         alt="Loading..."
       />
     </div>

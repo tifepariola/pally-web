@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom'
 import PlanActions from "../../js/actions/actions";
 import PlanItem from "./PlanItem";
 import Modal from "react-responsive-modal";
-import Spinner from "./Spinner";
+import Spinner from "components/Spinner";
 import PlanTable from "./PlanTable";
 import Footer from "../Footer/Footer";
 import Datetime from 'react-datetime';
@@ -158,7 +158,8 @@ class MyPlans extends Component {
     var startValid = function (current) {
       return current.isAfter(yesterday);
     };
-    var maturityDay = this.state.plan === 'fixeds' ? Datetime.moment().add(6, 'month') : Datetime.moment().add(3, 'month');
+    var maturityDay = this.state.plan === 'fixeds' ?
+    Datetime.moment().add(6, 'month') : Datetime.moment().add(3, 'month');
     var maturityValid = function (current) {
       return current.isAfter(maturityDay);
     };

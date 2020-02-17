@@ -18,7 +18,9 @@ export default class Cookie {
             let cookieArray = item.split('=')
             if (cookieArray[0].trim().startsWith('pally')) {
                 try {
-                    cookies[cookieArray[0].trim()] = JSON.parse(decodeURIComponent(cookieArray[1]))
+                    cookies[cookieArray[0].trim()] = JSON.parse(
+                        decodeURIComponent(cookieArray[1])
+                    )
                 } catch {
                     cookies[cookieArray[0].trim()] = decodeURIComponent(cookieArray[1])
                 }

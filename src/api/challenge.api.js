@@ -31,12 +31,19 @@ export default class ChallengeApi {
     }
 
     /**
-     * Get Personally created challenges
+     *      Get Personally created challenges
      */
     static getMyChallenges () {
         return $axios.get('/savers/my-plans')
     }
 
+    /**
+     * 
+     * @param {*} saver 
+     * @param {*} payload 
+     * 
+     *      Update a Challenge
+     */
     static updateChallenge (saver, payload) {
         return $axios.put(`/savers/${saver}`, payload)
     }
