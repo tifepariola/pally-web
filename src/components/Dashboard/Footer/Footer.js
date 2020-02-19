@@ -9,7 +9,7 @@ export default class Footer extends React.Component {
             <footer className="footer">
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-md-6">OnePally &copy; { year }</div>
+                        <div className="col-md-6">Pallymate &copy; { year }</div>
                         <div className="col-md-6">
                             <div className="text-md-right footer-links d-none d-sm-block">
                                 <a href="/">About Us</a>
