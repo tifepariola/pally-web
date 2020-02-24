@@ -11,6 +11,11 @@ export default [
         icon: 'fe-layers'
     },
     {
+        title: 'Mutual Funds',
+        link: '/dashboard/funds',
+        icon: 'fe-layers'
+    },
+    {
         title: 'Withdraw',
         link: '/dashboard/withdraw',
         icon: 'fe-credit-card'

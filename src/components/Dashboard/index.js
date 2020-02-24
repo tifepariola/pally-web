@@ -28,6 +28,8 @@ import ViewFixedPlan from "./ViewFixedPlan/ViewFixedPlan";
 import EditLife from "./EditLife/EditLife";
 import Registered from "./Auth/Registered";
 import CreateChallenge from "./CreateChallenge/CreateChallenge";
+import MutualFunds from "./MutualFunds/MutualFunds";
+import ViewMutualFunds from "./MutualFunds/ViewMutualFunds";
 
 function Index() {
   
@@ -45,6 +47,8 @@ function Index() {
         <Route path="/dashboard/forgot" component={ForgotPassAlt} />
         <Route path="/dashboard/save" component={SaveNow} />
         <Route path="/dashboard/plans" component={MyPlans} />
+        <Route path="/dashboard/funds" component={MutualFunds} />
+        <Route path="/dashboard/view-fund" component={ViewMutualFunds} />
         <Route path="/dashboard/create" component={CreatePlan} />
         <Route path="/dashboard/create-fixed" component={CreatePlanForm} />
         <Route path="/dashboard/create-regular-savings" component={CreateRegular} />

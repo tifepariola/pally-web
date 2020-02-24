@@ -1,0 +1,9 @@
+.click-card:hover {
+    background-color: #6600af;
+}
+.click-card:hover .text-primary {
+    color: #fff !important;
+}
+.click-card:hover .text-muted {
+    color: #000 !important;
+}
