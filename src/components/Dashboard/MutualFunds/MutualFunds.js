@@ -385,7 +385,7 @@ class MutualFunds extends Component {
             </div>
             <div className="row mt-2">
             <div className="col-12 mb-3">
-              <Link to={"/dashboard/create"} className="btn btn-primary">Buy Mutual Funds</Link>
+              <Link to={"/dashboard/buy-fund"} className="btn btn-primary">Buy Mutual Funds</Link>
               <div className="float-right">
                 <a href="javascript:void(0)" onClick={(e) => this.filterPlans('all')}>All</a> / &nbsp;
                 <a href="javascript:void(0)" onClick={(e) => this.filterPlans('fixed')}>Low Risk</a> / &nbsp;

@@ -30,6 +30,7 @@ import Registered from "./Auth/Registered";
 import CreateChallenge from "./CreateChallenge/CreateChallenge";
 import MutualFunds from "./MutualFunds/MutualFunds";
 import ViewMutualFunds from "./MutualFunds/ViewMutualFunds";
+import BuyFund from "./BuyFund/BuyFund";
 
 function Index() {
   
@@ -50,6 +51,7 @@ function Index() {
         <Route path="/dashboard/funds" component={MutualFunds} />
         <Route path="/dashboard/view-fund" component={ViewMutualFunds} />
         <Route path="/dashboard/create" component={CreatePlan} />
+        <Route path="/dashboard/buy-fund" component={BuyFund} />
         <Route path="/dashboard/create-fixed" component={CreatePlanForm} />
         <Route path="/dashboard/create-regular-savings" component={CreateRegular} />
         <Route path="/dashboard/create-challenge" component={CreateChallenge} />
