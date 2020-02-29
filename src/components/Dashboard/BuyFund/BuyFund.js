@@ -174,7 +174,7 @@ class BuyFund extends Component {
                                             </div>
                                         </div>
                                         <div className={'text-center'}>
-                                            <Link to={'/dashboard/view-fund'} className={'btn btn-primary'}>Invest</Link>
+                                            <Link to={'/dashboard/buy'} className={'btn btn-primary'}>Invest</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -198,7 +198,7 @@ class BuyFund extends Component {
                                             </div>
                                         </div>
                                         <div className={'text-center'}>
-                                            <Link to={'/dashboard/view-fund'} className={'btn btn-primary'}>Invest</Link>
+                                            <Link to={'/dashboard/buy'} className={'btn btn-primary'}>Invest</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -222,7 +222,7 @@ class BuyFund extends Component {
                                             </div>
                                         </div>
                                         <div className={'text-center'}>
-                                            <Link to={'/dashboard/view-fund'} className={'btn btn-primary'}>Invest</Link>
+                                            <Link to={'/dashboard/buy'} className={'btn btn-primary'}>Invest</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -246,7 +246,7 @@ class BuyFund extends Component {
                                             </div>
                                         </div>
                                         <div className={'text-center'}>
-                                            <Link to={'/dashboard/view-fund'} className={'btn btn-primary'}>Invest</Link>
+                                            <Link to={'/dashboard/buy'} className={'btn btn-primary'}>Invest</Link>
                                         </div>
                                     </div>
                                 </div>
